@@ -1,0 +1,10 @@
+# User-level Nix Modules
+---
+
+Separate Nix files can be imported as modules using an import block:
+
+imports = [ import1.nix
+            import2.nix
+            ...
+          ];
+Modules in this directory are used are user-level configurations.

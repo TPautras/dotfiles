@@ -1,0 +1,9 @@
+# System-level Nix Modules
+Separate Nix files can be imported as modules using an import block:
+```nix
+imports = [ import1.nix
+            import2.nix
+            ...
+          ];
+```
+Modules in this directory are used are system-level (root) configurations.
