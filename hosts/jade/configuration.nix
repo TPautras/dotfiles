@@ -4,8 +4,8 @@
   config = {
     systemSettings = {
       # users
-      users = [ "USERNAME" ];
-      adminUsers = [ "USERNAME" ];
+      users = [ "thomas" ];
+      adminUsers = [ "thomas" ];
 
       # hardware
       cachy.enable = true;
@@ -13,18 +13,7 @@
       powerprofiles.enable = true;
       tlp.enable = false;
       printing.enable = true;
-
-      # software
-      flatpak.enable = false;
-      gaming.enable = false;
-      virtualization = {
-        docker.enable = false;
-        virtualMachines.enable = false;
-      };
-      brave.enable = true;
-
-      # wm
-      hyprland.enable = true;
+      chromium.enable = true;
 
       # dotfiles
       dotfilesDir = "/etc/nixos";
@@ -44,14 +33,14 @@
       # style
       stylix = {
         enable = true;
-        theme = "orichalcum";
+        theme = "everforest";
       };
     };
 
-    users.users.USERNAME.description = "NAME";
-    home-manager.users.USERNAME.userSettings = {
-      name = "NAME";
-      email = "EMAIL";
+    users.users.thomas.description = "Thomas' user account";
+    home-manager.users.thomas.userSettings = {
+      name = "Thomas";
+      email = "thomas@example.com";
     };
 
     ## EXTRA CONFIG GOES HERE
