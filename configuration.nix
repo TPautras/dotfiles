@@ -98,6 +98,7 @@
   programs.firefox.enable = true;
   programs.fish.enable = true;
   programs.git.enable = true;
+  programs.vscode.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
