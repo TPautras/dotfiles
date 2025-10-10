@@ -3,7 +3,7 @@
 {
   config = {
     userSettings = {
-      vscode.enable = true;
+      editor.enable = true;
     };
   };
 }

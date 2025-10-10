@@ -7,7 +7,7 @@ in {
 
         default = lib.mkOption {
             type = lib.types.enum [ "vim" "nvim" "emacs" "vscode" ];
-            default = "nvim";
+            default = "vscode";
             description = "Set the default editor for users.";
         };
 

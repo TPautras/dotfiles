@@ -28,6 +28,10 @@
     };
 
     users.users.thomas.description = "Thomas' user account";
+    home-manager.users.thomas.userSettings = {
+      name = "Thomas";
+      email = "thomas@example.com";
+    };
   };
   
 }
