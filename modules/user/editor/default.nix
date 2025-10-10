@@ -44,7 +44,7 @@ in {
 
     config = lib.mkIf cfg.enable {
         users.defaultEditor = pkgs.lib.mkDefault (pkgs.lib.getAttr cfg.default pkgs);
-        environment.systemPackages = with pkgs; lib.mkForce (
+        home.packages = with pkgs; lib.mkForce (
             (if cfg.enableVim then [ vim ] else []) ++
             (if cfg.enableNvim then [ neovim ] else []) ++
             (if cfg.enableEmacs then [ emacs ] else []) ++
