@@ -20,9 +20,6 @@
         enable = true;
       };
 
-      # dotfiles
-      dotfilesDir = "/etc/nixos";
-
       # security
       security = {
         automount.enable = true;
