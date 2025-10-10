@@ -8,7 +8,10 @@
       adminUsers = [ "thomas" ];
 
       # hardware
-      cachy.enable = true;
+      cachy = {
+        enable = true;
+        variant = "lto";
+      };
       bluetooth.enable = true;
       powerprofiles.enable = true;
       tlp.enable = false;
