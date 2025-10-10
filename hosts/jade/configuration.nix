@@ -13,7 +13,9 @@
       powerprofiles.enable = true;
       tlp.enable = false;
       printing.enable = true;
-      chromium.enable = true;
+      chromium = {
+        enable = true;
+      };
 
       # dotfiles
       dotfilesDir = "/etc/nixos";
