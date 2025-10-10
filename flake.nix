@@ -56,7 +56,6 @@
               # host specific config
               { config.networking.hostName = host; }
               (./hosts + "/${host}")
-              (inputs.secrets.hostSecrets.${host})
 
               # my modules
               ./modules/system
@@ -119,12 +118,6 @@
     blocklist-hosts = {
       url = "github:StevenBlack/hosts";
       flake = false;
-    };
-
-    secrets = {
-      url = "path:/etc/nixos.secrets";
-      type = "git";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
