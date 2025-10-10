@@ -20,18 +20,6 @@
         enable = true;
       };
 
-      # security
-      security = {
-        automount.enable = true;
-        blocklist.enable = true;
-        doas.enable = true;
-        firejail.enable = false; # TODO setup firejail profiles
-        firewall.enable = true;
-        gpg.enable = true;
-        openvpn.enable = true;
-        sshd.enable = false;
-      };
-
       # style
       stylix = {
         enable = true;
