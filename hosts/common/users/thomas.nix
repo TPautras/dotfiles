@@ -1,7 +1,7 @@
 {
     config,
     pkgs,
-    input,
+    inputs,
     ...
 }: {
     users.users.thomas = {
