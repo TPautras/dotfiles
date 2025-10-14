@@ -9,19 +9,19 @@
         isNormalUser = true;
         description = "Thomas";
         extraGroups = [
-            "wheel", # Enable ‘sudo’ for the user.
-            "networkmanager",
-            "docker",
-            "video",
-            "audio",
-            "cdrom",
-            "dialout",
-            "plugdev",
-            "users",
-            "input",
-            "kvm",
-            "libvirt",
-            "flatpak",
+            "wheel"
+            "networkmanager"
+            "docker"
+            "video"
+            "audio"
+            "cdrom"
+            "dialout"
+            "plugdev"
+            "users"
+            "input"
+            "kvm"
+            "libvirt"
+            "flatpak"
             "qemu-libivirt"
         ];
         packages = [ input.home-manager.packages.${pkgs.system}.default ];
