@@ -84,7 +84,4 @@
 
   # System version
   system.stateVersion = "25.05";
-
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
