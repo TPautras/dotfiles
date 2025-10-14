@@ -10,7 +10,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Hostname and network
-  networking.hostName = "nixos";
+  networking.hostName = "jade";
   networking.networkmanager.enable = true;
 
   # Time zone and locale
