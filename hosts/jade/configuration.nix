@@ -46,8 +46,7 @@
   # Printing
   services.printing.enable = true;
 
-  # Sound with PipeWire
-  services.pulseaudio.enable = false;
+    # Enable sound with PipeWire.
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -55,6 +54,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
 
   # Users
   users.users.thomas = {
