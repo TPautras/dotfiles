@@ -31,7 +31,6 @@
         zip
         unzip
         p7zip
-        exa
         zellij
         htop
         jq
