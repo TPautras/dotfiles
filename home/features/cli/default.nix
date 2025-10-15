@@ -25,7 +25,6 @@
         fd
         fzf
         lsd
-        git
         curl
         wget
         zip
