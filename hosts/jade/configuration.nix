@@ -87,7 +87,6 @@
 
   # Programs
   programs.firefox.enable = true;
-  programs.fish.enable = true;
 
   # Allow unfree software
   nixpkgs.config.allowUnfree = true;
