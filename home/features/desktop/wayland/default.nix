@@ -9,5 +9,5 @@
 
     home.packages = with pkgs; [
         
-    ]
+    ];
 }
