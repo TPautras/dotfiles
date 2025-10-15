@@ -248,7 +248,6 @@ in {
             gdk-pixbuf
             noto-fonts
             noto-fonts-emoji
-            ttf-jetbrains-mono
         ];
     };
 }
