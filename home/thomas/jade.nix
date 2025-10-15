@@ -14,5 +14,5 @@
             wayland.enable = true;
             waybar.enable = true;
         };
-    }
+    };
 }
