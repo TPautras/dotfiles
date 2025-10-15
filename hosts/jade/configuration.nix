@@ -28,14 +28,49 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  # X11 and Plasma
-  services.xserver.enable = true;
-  services.xserver.displayManager.sddm = {
+  # --- Hyprland + Wayland setup ---
+  programs.hyprland = {
     enable = true;
-    autoLogin.enable = true;
-    autoLogin.user = "thomas";
+    # Pour utiliser la version de Hyprland fournie par NixOS
+    package = pkgs.hyprland;
   };
-  services.xserver.desktopManager.plasma6.enable = true;
+
+  # Utilise greetd comme display manager (léger, compatible Wayland)
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "thomas";
+      };
+    };
+  };
+
+  # Wayland utilities
+  environment.systemPackages = with pkgs; [
+    vim
+    discord
+    vscode
+    git
+    firefox
+    hyprpaper       # fond d’écran
+    hyprlock         # verrouillage
+    waybar           # barre d’état
+    rofi-wayland     # lanceur d’apps
+    wl-clipboard     # gestion du presse-papier
+    grim slurp       # capture d’écran
+    mako             # notifications
+    networkmanagerapplet
+  ];
+
+  # Sound with PipeWire
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # Keyboard
   services.xserver.xkb = {
@@ -45,16 +80,6 @@
 
   # Printing
   services.printing.enable = true;
-
-    # Enable sound with PipeWire.
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
 
   # Users
   users.users.thomas = {
@@ -73,14 +98,6 @@
 
   # Allow unfree software
   nixpkgs.config.allowUnfree = true;
-
-  # System packages
-  environment.systemPackages = with pkgs; [
-    vim
-    discord
-    vscode
-    git
-  ];
 
   # System version
   system.stateVersion = "25.05";
