@@ -37,15 +37,15 @@
   };
 
   # Utilise greetd comme display manager (léger, compatible Wayland)
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "thomas";
-      };
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.hyprland}/bin/Hyprland";
+  #       user = "thomas";
+  #     };
+  #   };
+  # };
 
   # Wayland utilities
   environment.systemPackages = with pkgs; [
@@ -54,13 +54,6 @@
     vscode
     git
     firefox
-    hyprpaper       # fond d’écran
-    hyprlock         # verrouillage
-    waybar           # barre d’état
-    rofi-wayland     # lanceur d’apps
-    wl-clipboard     # gestion du presse-papier
-    grim slurp       # capture d’écran
-    mako             # notifications
     networkmanagerapplet
   ];
 
@@ -76,7 +69,6 @@
   # Keyboard
   services.xserver.xkb = {
     layout = "us";
-    variant = "kr";
   };
 
   # Printing
