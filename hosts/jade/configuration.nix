@@ -33,6 +33,7 @@
     enable = true;
     # Pour utiliser la version de Hyprland fournie par NixOS
     package = pkgs.hyprland;
+    xwayland.enable = true;
   };
 
   # Utilise greetd comme display manager (léger, compatible Wayland)
@@ -75,7 +76,7 @@
   # Keyboard
   services.xserver.xkb = {
     layout = "us";
-    variant = "";
+    variant = "kr";
   };
 
   # Printing
