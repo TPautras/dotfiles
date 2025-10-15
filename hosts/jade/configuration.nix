@@ -36,7 +36,7 @@
     xwayland.enable = true;
   };
 
-  Utilise greetd comme display manager (léger, compatible Wayland)
+  #Utilise greetd comme display manager (léger, compatible Wayland)
   services.greetd = {
     enable = true;
     settings = {
