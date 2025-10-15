@@ -36,16 +36,16 @@
     xwayland.enable = true;
   };
 
-  # Utilise greetd comme display manager (léger, compatible Wayland)
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command = "${pkgs.hyprland}/bin/Hyprland";
-  #       user = "thomas";
-  #     };
-  #   };
-  # };
+  Utilise greetd comme display manager (léger, compatible Wayland)
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "thomas";
+      };
+    };
+  };
 
   # Wayland utilities
   environment.systemPackages = with pkgs; [
