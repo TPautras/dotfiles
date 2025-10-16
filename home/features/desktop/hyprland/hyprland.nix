@@ -9,7 +9,6 @@ in {
   options.features.desktop.hyprland.enable = mkEnableOption "hyprland config";
 
   config = mkIf cfg.enable {
-    programs.wayland.defaultWindowManager = "hyprland";
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {

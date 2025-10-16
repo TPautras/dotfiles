@@ -16,7 +16,6 @@ in {
     };
 
     config = mkIf cfg.enable {
-        programs.wayland.enable = true;
         home.packages = with pkgs; [
             grim
             hyprlock
