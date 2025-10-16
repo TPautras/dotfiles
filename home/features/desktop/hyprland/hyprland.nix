@@ -9,6 +9,7 @@ in {
   options.features.desktop.hyprland.enable = mkEnableOption "hyprland config";
 
   config = mkIf cfg.enable {
+    programs.wayland.defaultWindowManager = "hyprland";
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
@@ -129,7 +130,7 @@ in {
         "$mainMod" = "SUPER";
 
         bind = [
-          "$mainMod, return, exec, kitty -e zellij-ps"
+          "$mainMod, return, exec, kitty -e zellij"
           "$mainMod, t, exec, kitty -e fish -c 'neofetch; exec fish'"
           "$mainMod SHIFT, e, exec, kitty -e zellij_nvim"
           "$mainMod, o, exec, thunar"
