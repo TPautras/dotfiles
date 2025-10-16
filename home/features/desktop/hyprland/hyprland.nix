@@ -136,7 +136,7 @@ in {
           "$mainMod, o, exec, thunar"
           "$mainMod, Escape, exec, wlogout -p layer-shell"
           "$mainMod, Space, togglefloating"
-          "$mainMod, q, killactive"
+          "$mainMod, W, killactive"
           "$mainMod, M, exit"
           "$mainMod, F, fullscreen"
           "$mainMod, V, togglefloating"
