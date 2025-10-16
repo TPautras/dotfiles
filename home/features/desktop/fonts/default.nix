@@ -17,7 +17,7 @@ in
         home.packages = with pkgs; [
             fontconfig
             font-manager
-            font-Awesome
+            font-awesome
             fira-code-symbols
             noto-fonts
             noto-fonts-emoji
