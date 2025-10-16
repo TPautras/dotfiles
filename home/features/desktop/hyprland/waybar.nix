@@ -326,8 +326,6 @@ ${cssStyle}
 window#waybar { /* purely visual hint if you want */
   /* layer: ${cfg.layer}; */
 }
-/* unify item height through line-height */
-* { line-height: ${toString cfg.height}px; }
 '';
 
     xdg.configFile."waybar/macchiato.css".text =
