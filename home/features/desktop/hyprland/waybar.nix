@@ -3,14 +3,10 @@
 let
   cfg = config.features.desktop.waybar;
 
-  # === Contenus inline depuis tes fichiers ===
+  # ---------------------
+  # THEME (palette + css)
+  # ---------------------
   cssPaletteMacchiato = ''
-/*
-*
-* Catppuccin Macchiato palette
-* (extracted from your macchiato.css)
-* Feel free to edit/replace.
-*/
 @define-color base      #24273a;
 @define-color mantle    #1e2030;
 @define-color crust     #181926;
@@ -40,68 +36,45 @@ let
 '';
 
   cssStyle = ''
-/* style.css — imports palette then rules (from your style.css) */
 @import "macchiato.css";
 
-/* Windows */
-window.top_bar,
-window.bottom_bar,
-window.left_bar {
+/* ---- Compact global sizing (tunable via Nix options) ---- */
+* {
+  font-family: Inter, "Noto Sans", "Noto Color Emoji", sans-serif;
+  font-size: ${toString cfg.fontSize}px;
+  line-height: ${toString cfg.barHeight}px;
+}
+
+/* Windows (bars) */
+window.top_bar, window.bottom_bar, window.left_bar {
   background: transparent;
   color: @text;
 }
 
-/* Modules */
-#bluetooth,
-#network,
-#pulseaudio,
-#battery,
-#clock,
-#temperature,
-#memory,
-#cpu,
-#disk,
-#backlight,
-#idle_inhibitor,
-#privacy,
-#custom-media,
-#custom-night-mode,
-#custom-wifi,
-#custom-airplane,
-#custom-dunst,
-#custom-power {
+/* Modules: compact paddings/radii */
+#bluetooth, #network, #pulseaudio, #custom-battery, #clock, #temperature,
+#memory, #cpu, #disk, #backlight, #idle_inhibitor, #privacy, #custom-media,
+#custom-night-mode, #custom-wifi, #custom-airplane, #custom-dunst, #custom-power,
+#systemd-failed-units, #language, #mpris {
   background: @surface0;
   color: @text;
-  border-radius: 12px;
-  padding: 4px 8px;
-  margin: 4px 6px;
+  border-radius: ${toString cfg.radius}px;
+  padding: 2px 6px;
+  margin: 2px 4px;
 }
 
-/* Hover states */
-#bluetooth:hover,
-#network:hover,
-#pulseaudio:hover,
-#battery:hover,
-#clock:hover,
-#temperature:hover,
-#memory:hover,
-#cpu:hover,
-#disk:hover,
-#backlight:hover,
-#idle_inhibitor:hover,
-#privacy:hover,
-#custom-media:hover,
-#custom-night-mode:hover,
-#custom-wifi:hover,
-#custom-airplane:hover,
-#custom-dunst:hover,
-#custom-power:hover {
-  background: @surface1;
+#taskbar button {
+  background: @surface0;
+  border-radius: ${toString cfg.radius}px;
+  padding: 1px 4px;
+  margin: 1px 3px;
+  color: @subtext1;
 }
+#taskbar button:hover { background: @surface1; color: @text; }
 
 /* Accents */
-#battery.warning { color: @peach; }
-#battery.critical { color: @red; }
+#custom-battery.warning { color: @peach; }
+#custom-battery.critical { color: @red; }
 #pulseaudio.muted { color: @overlay1; }
 #network.disconnected { color: @red; }
 #bluetooth.off { color: @overlay1; }
@@ -113,53 +86,39 @@ window.left_bar {
 #backlight { color: @peach; }
 #idle_inhibitor.activated { color: @green; }
 
-/* Left bar task buttons */
-#taskbar button {
-  background: @surface0;
-  border-radius: 10px;
-  padding: 2px 6px;
-  margin: 2px 4px;
-  color: @subtext1;
-}
-#taskbar button:hover {
-  background: @surface1;
-  color: @text;
-}
-
-/* Special toggles (examples matching your config) */
+/* States printed by our scripts */
 #custom-night-mode.on { color: @yellow; }
-#custom-wifi.off    { color: @overlay0; }
+#custom-wifi.off { color: @overlay0; }
 #custom-airplane.on { color: @peach; }
-#custom-dunst.off   { color: @subtext0; }
+#custom-dunst.off { color: @subtext0; }
 
-#systemd-failed-units {
-  color: @red;
-}
+/* Hide custom battery if not present */
+#custom-battery.hidden { background: transparent; color: transparent; padding: 0; margin: 0; }
 '';
 
+  # ---------------------
+  # WAYBAR CONFIG (JSONC)
+  # NOTE: built-in "battery" is replaced by "custom/battery" to avoid errors.
+  # ---------------------
   jsoncConfig = ''
-// Double Bar Config (from your config.txt)
 [
-  // Top Bar Config
   {
     "name": "top_bar",
-    "height": 36,
+    "height": ${toString cfg.barHeight},
     "position": "top",
-    "layer": "top",
+    "layer": "${cfg.layer}",
     "modules-left": [
       "hyprland/workspaces",
       "hyprland/submap",
       "hyprland/window"
     ],
-    "modules-center": [
-      "wlr/taskbar"
-    ],
+    "modules-center": [ "wlr/taskbar" ],
     "modules-right": [
       "privacy",
       "pulseaudio",
       "bluetooth",
       "network",
-      "battery",
+      "custom/battery",
       "backlight",
       "cpu",
       "memory",
@@ -170,28 +129,36 @@ window.left_bar {
     ],
 
     "clock": { "format": "{:%Y-%m-%d %H:%M:%S}" },
+
     "bluetooth": {
       "format": "{controller_alias}",
       "format-connected": "{device_alias}",
       "format-disabled": "Off",
-      "on-click": "bluetooth_toggle"
+      "on-click": "blueman-manager",
+      "icon-size": ${toString cfg.iconSize}
     },
+
     "network": {
       "format-wifi": "{essid} ({signalStrength}%)",
       "format-ethernet": "{ifname}",
       "format-disconnected": "Disconnected",
-      "on-click": "wifi_toggle"
+      "on-click": "nm-connection-editor"
     },
+
     "pulseaudio": {
       "format": "{volume}%",
       "format-muted": "Muted",
       "scroll-step": 1,
-      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      "on-click": "pavucontrol"
     },
-    "battery": {
-      "states": { "warning": 20, "critical": 10 },
-      "format": "{capacity}% {timeTo}"
+
+    "custom/battery": {
+      "interval": 5,
+      "exec": "custom_battery",
+      "return-type": "json",
+      "format": "{}"
     },
+
     "backlight": { "format": "{percent}%" },
     "cpu": { "format": "{usage}%" },
     "memory": { "format": "{percentage}%" },
@@ -200,21 +167,18 @@ window.left_bar {
     "systemd-failed-units": { "format": "✗ {nr_failed}" },
 
     "privacy": {
-      "icon-size": 20,
-      "icon-spacing": 6,
-      "icon-dimmed-opacity": 0.3
+      "icon-size": ${toString cfg.iconSize},
+      "icon-spacing": 4,
+      "icon-dimmed-opacity": 0.35
     },
 
     "wlr/taskbar": {
       "format": "{icon} {title}",
-      "icon-size": 18,
+      "icon-size": ${toString cfg.iconSize},
       "all-outputs": true
     },
 
-    "hyprland/window": {
-      "format": "{class} — {title}",
-      "separate-outputs": true
-    },
+    "hyprland/window": { "format": "{class} — {title}", "separate-outputs": true },
     "hyprland/workspaces": {
       "on-scroll-up": "hyprctl dispatch workspace e+1",
       "on-scroll-down": "hyprctl dispatch workspace e-1",
@@ -222,12 +186,11 @@ window.left_bar {
     }
   },
 
-  // Bottom Bar Config
   {
     "name": "bottom_bar",
-    "height": 36,
+    "height": ${toString cfg.barHeight},
     "position": "bottom",
-    "layer": "top",
+    "layer": "${cfg.layer}",
     "modules-left": [
       "mpris",
       "custom/night-mode",
@@ -236,9 +199,7 @@ window.left_bar {
       "custom/dunst"
     ],
     "modules-center": [],
-    "modules-right": [
-      "hyprland/language"
-    ],
+    "modules-right": [ "hyprland/language" ],
 
     "mpris": {
       "format": "{player_icon} {title} — {artist}",
@@ -249,94 +210,216 @@ window.left_bar {
       "on-scroll-down": "playerctl previous"
     },
 
-    "hyprland/language": {
-      "format": "{}",
-      "flags": true
-    },
+    "hyprland/language": { "format": "{}", "flags": true },
 
     "custom/night-mode": {
       "interval": 2,
       "exec": "night_mode_status",
-      "on-click": "night_mode_toggle"
+      "on-click": "night_mode_toggle",
+      "return-type": "text"
     },
     "custom/wifi": {
       "interval": 2,
       "exec": "wifi_status",
-      "on-click": "wifi_toggle"
+      "on-click": "wifi_toggle",
+      "return-type": "text"
     },
     "custom/airplane": {
       "interval": 2,
       "exec": "airplane_mode_status",
-      "on-click": "airplane_mode_toggle"
+      "on-click": "airplane_mode_toggle",
+      "return-type": "text"
     },
     "custom/dunst": {
       "interval": 2,
       "exec": "dunst_status",
-      "on-click": "dunst_pause"
+      "on-click": "dunst_pause",
+      "return-type": "text"
     }
   },
 
-  // Left Bar Config
   {
     "name": "left_bar",
-    "width": 52,
+    "width": 46,
     "position": "left",
     "layer": "bottom",
-    "margin-top": 10,
-    "margin-bottom": 10,
-    "modules-left": [
-      "wlr/taskbar"
-    ],
+    "margin-top": 6,
+    "margin-bottom": 6,
+    "modules-left": [ "wlr/taskbar" ],
     "wlr/taskbar": {
       "format": "{icon}",
-      "icon-size": 22,
+      "icon-size": ${toString (cfg.iconSize + 2)},
       "all-outputs": false
     }
   }
 ]
 '';
+
 in
 with lib; {
   options.features.desktop.waybar = {
-    enable = mkEnableOption "Waybar (Hyprland) single-file module";
-    height = mkOption { type = types.int; default = 36; description = "Bar height (visual, via CSS line-height)."; };
-    layer  = mkOption { type = types.enum [ "top" "bottom" ]; default = "top"; description = "Default visual layer hint."; };
-    useStylixPalette = mkOption {
-      type = types.bool;
-      default = false;
-      description = "If true, you can swap macchiato.css content with a Stylix-exported palette (edit below).";
-    };
-    stylixPaletteCss = mkOption {
-      type = types.str;
-      default = "/* Put Stylix-exported CSS palette here if you set useStylixPalette = true; */";
-      description = "Raw CSS with @define-color vars compatible with style.css import.";
-    };
+    enable = mkEnableOption "Waybar (Hyprland) single-file module, compact & with helpers";
+    # UI tuning
+    barHeight  = mkOption { type = types.int; default = 28; description = "Bar height in px"; };
+    fontSize   = mkOption { type = types.int; default = 11; description = "Font size in px"; };
+    iconSize   = mkOption { type = types.int; default = 16; description = "Icon size for taskbar/privacy"; };
+    radius     = mkOption { type = types.int; default = 10; description = "Corner radius for pills"; };
+    layer      = mkOption { type = types.enum [ "top" "bottom" ]; default = "top"; description = "Waybar layer"; };
+
+    # Optional: replace palette via Stylix-exported CSS
+    useStylixPalette = mkOption { type = types.bool; default = false; description = "Swap palette with Stylix CSS"; };
+    stylixPaletteCss = mkOption { type = types.str; default = "/* put Stylix @define-color vars here */"; };
   };
 
   config = mkIf cfg.enable {
     programs.waybar.enable = true;
 
-    # Déploie les 3 fichiers Waybar depuis ce Nix unique
+    # ------------
+    # Deploy files
+    # ------------
     xdg.configFile."waybar/config".text = jsoncConfig;
-
-    xdg.configFile."waybar/style.css".text = ''
-${cssStyle}
-
-/* Nix-driven tweaks */
-window#waybar { /* purely visual hint if you want */
-  /* layer: ${cfg.layer}; */
-}
-'';
-
+    xdg.configFile."waybar/style.css".text = cssStyle;
     xdg.configFile."waybar/macchiato.css".text =
       (if cfg.useStylixPalette then cfg.stylixPaletteCss else cssPaletteMacchiato);
 
-    # Dépendances utiles
+    # ----------------
+    # Helper commands
+    # ----------------
     home.packages = with pkgs; [
       jq pango cairo gdk-pixbuf
       noto-fonts noto-fonts-emoji
-      playerctl pavucontrol iwgtk
-      # ajoute ici les outils appelés par les scripts custom si besoin
+      playerctl pavucontrol iwgtk blueman networkmanager rfkill dunst
+      upower coreutils gnugrep gawk findutils
     ];
+
+    # --- WIFI ---
+    home.packages = (config.home.packages or []) ++ [
+      (pkgs.writeShellScriptBin "wifi_status" ''
+        set -e
+        if ! command -v nmcli >/dev/null 2>&1; then echo "wifi: nmcli missing"; exit 0; fi
+        state="$(nmcli -t -f WIFI radio 2>/dev/null | tr '[:upper:]' '[:lower:]')"
+        if [ "$state" = "enabled" ]; then echo "wifi: on"; else echo "wifi: off"; fi
+      '')
+      (pkgs.writeShellScriptBin "wifi_toggle" ''
+        set -e
+        if ! command -v nmcli >/dev/null 2>&1; then exit 0; fi
+        s="$(nmcli -t -f WIFI radio | tr '[:upper:]' '[:lower:]')"
+        if [ "$s" = "enabled" ]; then nmcli radio wifi off; else nmcli radio wifi on; fi
+      '')
+    ];
+
+    # --- AIRPLANE (rfkill all) ---
+    home.packages = (config.home.packages or []) ++ [
+      (pkgs.writeShellScriptBin "airplane_mode_status" ''
+        set -e
+        if ! command -v rfkill >/dev/null 2>&1; then echo "air: n/a"; exit 0; fi
+        # If any phy is soft blocked, consider airplane "on"
+        if rfkill -r | tail -n +2 | awk '{print $4}' | grep -q "blocked"; then
+          echo "airplane: on"
+        else
+          echo "airplane: off"
+        fi
+      '')
+      (pkgs.writeShellScriptBin "airplane_mode_toggle" ''
+        set -e
+        if ! command -v rfkill >/dev/null 2>&1; then exit 0; fi
+        if rfkill -r | tail -n +2 | awk '{print $4}' | grep -q "blocked"; then
+          rfkill unblock all
+        else
+          rfkill block all
+        fi
+      '')
+    ];
+
+    # --- DUNST ---
+    home.packages = (config.home.packages or []) ++ [
+      (pkgs.writeShellScriptBin "dunst_status" ''
+        set -e
+        if ! command -v dunstctl >/dev/null 2>&1; then echo "dunst: n/a"; exit 0; fi
+        s="$(dunstctl is-paused 2>/dev/null || echo false)"
+        if [ "$s" = "true" ]; then echo "dunst: off"; else echo "dunst: on"; fi
+      '')
+      (pkgs.writeShellScriptBin "dunst_pause" ''
+        set -e
+        if command -v dunstctl >/dev/null 2>&1; then dunstctl set-paused toggle; fi
+      '')
+    ];
+
+    # --- BLUETOOTH TOGGLE (click on bt module already opens blueman-manager) ---
+    home.packages = (config.home.packages or []) ++ [
+      (pkgs.writeShellScriptBin "bluetooth_toggle" ''
+        set -e
+        if command -v rfkill >/dev/null 2>&1; then
+          if rfkill -r | grep -i bluetooth | awk '{print $4}' | grep -q "blocked"; then
+            rfkill unblock bluetooth
+          else
+            rfkill block bluetooth
+          fi
+        fi
+      '')
+    ];
+
+    # --- NIGHT MODE (very light: just toggles a flag file & prints state)
+    # Plug in your actual tool (gammastep/wlsunset/hyprshade) in the toggle section if desired.
+    home.packages = (config.home.packages or []) ++ [
+      (pkgs.writeShellScriptBin "night_mode_status" ''
+        set -e
+        ST="${XDG_STATE_HOME:-$HOME/.local/state}/waybar/nightmode"
+        if [ -f "$ST" ]; then echo "night: on"; else echo "night: off"; fi
+      '')
+      (pkgs.writeShellScriptBin "night_mode_toggle" ''
+        set -e
+        ST="${XDG_STATE_HOME:-$HOME/.local/state}/waybar/nightmode"
+        mkdir -p "$(dirname "$ST")"
+        if [ -f "$ST" ]; then
+          rm -f "$ST"
+          # TODO: disable your night tool here (e.g., pkill gammastep)
+        else
+          touch "$ST"
+          # TODO: enable your night tool here (e.g., gammastep -O 3500 &)
+        fi
+      '')
+    ];
+
+    # --- CUSTOM BATTERY (safe on desktops; hides itself if none) ---
+    home.packages = (config.home.packages or []) ++ [
+      (pkgs.writeShellScriptBin "custom_battery" ''
+        set -e
+        # Try upower first
+        if command -v upower >/dev/null 2>&1; then
+          BAT="$(upower -e | grep -E '(battery|BAT)' | head -n1 || true)"
+          if [ -n "$BAT" ]; then
+            PCT="$(upower -i "$BAT" | awk '/percentage:/ {print $2}' | tr -d '%')"
+            STATE="$(upower -i "$BAT" | awk '/state:/ {print $2}')"
+            CLASS="ok"
+            [ "$PCT" -lt 20 ] && CLASS="warning"
+            [ "$PCT" -lt 10 ] && CLASS="critical"
+            echo "{\"text\":\"${PCT}%\",\"class\":\"${CLASS}\",\"tooltip\":\"${STATE}\"}"
+            exit 0
+          fi
+        fi
+        # Fallback sysfs
+        SYSBAT="$(ls -d /sys/class/power_supply/BAT* 2>/dev/null | head -n1 || true)"
+        if [ -n "$SYSBAT" ]; then
+          PCT="$(cat "$SYSBAT/capacity" 2>/dev/null || echo 0)"
+          CLASS="ok"
+          [ "$PCT" -lt 20 ] && CLASS="warning"
+          [ "$PCT" -lt 10 ] && CLASS="critical"
+          echo "{\"text\":\"${PCT}%\",\"class\":\"${CLASS}\"}"
+          exit 0
+        fi
+        # No battery: hide
+        echo "{\"text\":\"\",\"class\":\"hidden\"}"
+      '')
+    ];
+
+    # -----------
+    # Write files
+    # -----------
+    xdg.configFile."waybar/macchiato.css".text =
+      (if cfg.useStylixPalette then cfg.stylixPaletteCss else cssPaletteMacchiato);
+
+    xdg.configFile."waybar/config".text = jsoncConfig;
+    xdg.configFile."waybar/style.css".text = cssStyle;
   };
 }
