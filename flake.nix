@@ -29,7 +29,10 @@
       overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
         jade = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { 
+            inherit inputs outputs;
+            host ="jade" 
+          };
           modules = [ ./hosts/jade ];
         };
       };
