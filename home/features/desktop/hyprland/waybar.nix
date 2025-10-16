@@ -3,9 +3,7 @@
 let
   cfg = config.features.desktop.waybar;
 
-  # ---------------------
-  # THEME (palette + css)
-  # ---------------------
+  # -------- Theme (palette + css) --------
   cssPaletteMacchiato = ''
 @define-color base      #24273a;
 @define-color mantle    #1e2030;
@@ -96,10 +94,7 @@ window.top_bar, window.bottom_bar, window.left_bar {
 #custom-battery.hidden { background: transparent; color: transparent; padding: 0; margin: 0; }
 '';
 
-  # ---------------------
-  # WAYBAR CONFIG (JSONC)
-  # NOTE: built-in "battery" is replaced by "custom/battery" to avoid errors.
-  # ---------------------
+  # -------- Waybar config (battery natif -> custom/battery) --------
   jsoncConfig = ''
 [
   {
@@ -107,25 +102,12 @@ window.top_bar, window.bottom_bar, window.left_bar {
     "height": ${toString cfg.barHeight},
     "position": "top",
     "layer": "${cfg.layer}",
-    "modules-left": [
-      "hyprland/workspaces",
-      "hyprland/submap",
-      "hyprland/window"
-    ],
+    "modules-left": [ "hyprland/workspaces", "hyprland/submap", "hyprland/window" ],
     "modules-center": [ "wlr/taskbar" ],
     "modules-right": [
-      "privacy",
-      "pulseaudio",
-      "bluetooth",
-      "network",
-      "custom/battery",
-      "backlight",
-      "cpu",
-      "memory",
-      "temperature",
-      "disk",
-      "systemd-failed-units",
-      "clock"
+      "privacy", "pulseaudio", "bluetooth", "network", "custom/battery",
+      "backlight", "cpu", "memory", "temperature", "disk",
+      "systemd-failed-units", "clock"
     ],
 
     "clock": { "format": "{:%Y-%m-%d %H:%M:%S}" },
@@ -192,11 +174,7 @@ window.top_bar, window.bottom_bar, window.left_bar {
     "position": "bottom",
     "layer": "${cfg.layer}",
     "modules-left": [
-      "mpris",
-      "custom/night-mode",
-      "custom/wifi",
-      "custom/airplane",
-      "custom/dunst"
+      "mpris", "custom/night-mode", "custom/wifi", "custom/airplane", "custom/dunst"
     ],
     "modules-center": [],
     "modules-right": [ "hyprland/language" ],
@@ -212,30 +190,10 @@ window.top_bar, window.bottom_bar, window.left_bar {
 
     "hyprland/language": { "format": "{}", "flags": true },
 
-    "custom/night-mode": {
-      "interval": 2,
-      "exec": "night_mode_status",
-      "on-click": "night_mode_toggle",
-      "return-type": "text"
-    },
-    "custom/wifi": {
-      "interval": 2,
-      "exec": "wifi_status",
-      "on-click": "wifi_toggle",
-      "return-type": "text"
-    },
-    "custom/airplane": {
-      "interval": 2,
-      "exec": "airplane_mode_status",
-      "on-click": "airplane_mode_toggle",
-      "return-type": "text"
-    },
-    "custom/dunst": {
-      "interval": 2,
-      "exec": "dunst_status",
-      "on-click": "dunst_pause",
-      "return-type": "text"
-    }
+    "custom/night-mode": { "interval": 2, "exec": "night_mode_status", "on-click": "night_mode_toggle", "return-type": "text" },
+    "custom/wifi":       { "interval": 2, "exec": "wifi_status",       "on-click": "wifi_toggle",       "return-type": "text" },
+    "custom/airplane":   { "interval": 2, "exec": "airplane_mode_status", "on-click": "airplane_mode_toggle", "return-type": "text" },
+    "custom/dunst":      { "interval": 2, "exec": "dunst_status",      "on-click": "dunst_pause",       "return-type": "text" }
   },
 
   {
@@ -254,6 +212,115 @@ window.top_bar, window.bottom_bar, window.left_bar {
   }
 ]
 '';
+
+  # --------- Helper scripts (ALL collected into one list) ---------
+  helpers = with pkgs; [
+    (writeShellScriptBin "wifi_status" ''
+      set -e
+      if ! command -v nmcli >/dev/null 2>&1; then echo "wifi: n/a"; exit 0; fi
+      state="$(nmcli -t -f WIFI radio 2>/dev/null | tr '[:upper:]' '[:lower:]')"
+      if [ "$state" = "enabled" ]; then echo "wifi: on"; else echo "wifi: off"; fi
+    '')
+    (writeShellScriptBin "wifi_toggle" ''
+      set -e
+      if ! command -v nmcli >/dev/null 2>&1; then exit 0; fi
+      s="$(nmcli -t -f WIFI radio | tr '[:upper:]' '[:lower:]')"
+      if [ "$s" = "enabled" ]; then nmcli radio wifi off; else nmcli radio wifi on; fi
+    '')
+
+    (writeShellScriptBin "airplane_mode_status" ''
+      set -e
+      if ! command -v rfkill >/dev/null 2>&1; then echo "air: n/a"; exit 0; fi
+      if rfkill -r | tail -n +2 | awk '{print $4}' | grep -q "blocked"; then
+        echo "airplane: on"
+      else
+        echo "airplane: off"
+      fi
+    '')
+    (writeShellScriptBin "airplane_mode_toggle" ''
+      set -e
+      if ! command -v rfkill >/dev/null 2>&1; then exit 0; fi
+      if rfkill -r | tail -n +2 | awk '{print $4}' | grep -q "blocked"; then
+        rfkill unblock all
+      else
+        rfkill block all
+      fi
+    '')
+
+    (writeShellScriptBin "dunst_status" ''
+      set -e
+      if ! command -v dunstctl >/dev/null 2>&1; then echo "dunst: n/a"; exit 0; fi
+      s="$(dunstctl is-paused 2>/dev/null || echo false)"
+      if [ "$s" = "true" ]; then echo "dunst: off"; else echo "dunst: on"; fi
+    '')
+    (writeShellScriptBin "dunst_pause" ''
+      set -e
+      if command -v dunstctl >/dev/null 2>&1; then dunstctl set-paused toggle; fi
+    '')
+
+    (writeShellScriptBin "bluetooth_toggle" ''
+      set -e
+      if command -v rfkill >/dev/null 2>&1; then
+        if rfkill -r | grep -i bluetooth | awk '{print $4}' | grep -q "blocked"; then
+          rfkill unblock bluetooth
+        else
+          rfkill block bluetooth
+        fi
+      fi
+    '')
+
+    (writeShellScriptBin "night_mode_status" ''
+      set -e
+      ST="${XDG_STATE_HOME:-$HOME/.local/state}/waybar/nightmode"
+      if [ -f "$ST" ]; then echo "night: on"; else echo "night: off"; fi
+    '')
+    (writeShellScriptBin "night_mode_toggle" ''
+      set -e
+      ST="${XDG_STATE_HOME:-$HOME/.local/state}/waybar/nightmode"
+      mkdir -p "$(dirname "$ST")"
+      if [ -f "$ST" ]; then
+        rm -f "$ST"
+        # TODO: disable your night tool here (e.g., pkill gammastep)
+      else
+        touch "$ST"
+        # TODO: enable your night tool here (e.g., gammastep -O 3500 &)
+      fi
+    '')
+
+    (writeShellScriptBin "custom_battery" ''
+      set -e
+      if command -v upower >/dev/null 2>&1; then
+        BAT="$(upower -e | grep -E '(battery|BAT)' | head -n1 || true)"
+        if [ -n "$BAT" ]; then
+          PCT="$(upower -i "$BAT" | awk '/percentage:/ {print $2}' | tr -d '%')"
+          STATE="$(upower -i "$BAT" | awk '/state:/ {print $2}')"
+          CLASS="ok"
+          [ "$PCT" -lt 20 ] && CLASS="warning"
+          [ "$PCT" -lt 10 ] && CLASS="critical"
+          echo "{\"text\":\"${PCT}%\",\"class\":\"${CLASS}\",\"tooltip\":\"${STATE}\"}"
+          exit 0
+        fi
+      fi
+      SYSBAT="$(ls -d /sys/class/power_supply/BAT* 2>/dev/null | head -n1 || true)"
+      if [ -n "$SYSBAT" ]; then
+        PCT="$(cat "$SYSBAT/capacity" 2>/dev/null || echo 0)"
+        CLASS="ok"
+        [ "$PCT" -lt 20 ] && CLASS="warning"
+        [ "$PCT" -lt 10 ] && CLASS="critical"
+        echo "{\"text\":\"${PCT}%\",\"class\":\"${CLASS}\"}"
+        exit 0
+      fi
+      echo "{\"text\":\"\",\"class\":\"hidden\"}"
+    '')
+  ];
+
+  # Base packages used by modules / scripts
+  basePkgs = with pkgs; [
+    jq pango cairo gdk-pixbuf
+    noto-fonts noto-fonts-emoji
+    playerctl pavucontrol iwgtk blueman networkmanager rfkill dunst
+    upower coreutils gnugrep gawk findutils
+  ];
 
 in
 with lib; {
@@ -274,152 +341,13 @@ with lib; {
   config = mkIf cfg.enable {
     programs.waybar.enable = true;
 
-    # ------------
     # Deploy files
-    # ------------
-    xdg.configFile."waybar/config".text = jsoncConfig;
-    xdg.configFile."waybar/style.css".text = cssStyle;
+    xdg.configFile."waybar/config".text     = jsoncConfig;
+    xdg.configFile."waybar/style.css".text  = cssStyle;
     xdg.configFile."waybar/macchiato.css".text =
       (if cfg.useStylixPalette then cfg.stylixPaletteCss else cssPaletteMacchiato);
 
-    # ----------------
-    # Helper commands
-    # ----------------
-    home.packages = with pkgs; [
-      jq pango cairo gdk-pixbuf
-      noto-fonts noto-fonts-emoji
-      playerctl pavucontrol iwgtk blueman networkmanager rfkill dunst
-      upower coreutils gnugrep gawk findutils
-    ];
-
-    # --- WIFI ---
-    home.packages = (config.home.packages or []) ++ [
-      (pkgs.writeShellScriptBin "wifi_status" ''
-        set -e
-        if ! command -v nmcli >/dev/null 2>&1; then echo "wifi: nmcli missing"; exit 0; fi
-        state="$(nmcli -t -f WIFI radio 2>/dev/null | tr '[:upper:]' '[:lower:]')"
-        if [ "$state" = "enabled" ]; then echo "wifi: on"; else echo "wifi: off"; fi
-      '')
-      (pkgs.writeShellScriptBin "wifi_toggle" ''
-        set -e
-        if ! command -v nmcli >/dev/null 2>&1; then exit 0; fi
-        s="$(nmcli -t -f WIFI radio | tr '[:upper:]' '[:lower:]')"
-        if [ "$s" = "enabled" ]; then nmcli radio wifi off; else nmcli radio wifi on; fi
-      '')
-    ];
-
-    # --- AIRPLANE (rfkill all) ---
-    home.packages = (config.home.packages or []) ++ [
-      (pkgs.writeShellScriptBin "airplane_mode_status" ''
-        set -e
-        if ! command -v rfkill >/dev/null 2>&1; then echo "air: n/a"; exit 0; fi
-        # If any phy is soft blocked, consider airplane "on"
-        if rfkill -r | tail -n +2 | awk '{print $4}' | grep -q "blocked"; then
-          echo "airplane: on"
-        else
-          echo "airplane: off"
-        fi
-      '')
-      (pkgs.writeShellScriptBin "airplane_mode_toggle" ''
-        set -e
-        if ! command -v rfkill >/dev/null 2>&1; then exit 0; fi
-        if rfkill -r | tail -n +2 | awk '{print $4}' | grep -q "blocked"; then
-          rfkill unblock all
-        else
-          rfkill block all
-        fi
-      '')
-    ];
-
-    # --- DUNST ---
-    home.packages = (config.home.packages or []) ++ [
-      (pkgs.writeShellScriptBin "dunst_status" ''
-        set -e
-        if ! command -v dunstctl >/dev/null 2>&1; then echo "dunst: n/a"; exit 0; fi
-        s="$(dunstctl is-paused 2>/dev/null || echo false)"
-        if [ "$s" = "true" ]; then echo "dunst: off"; else echo "dunst: on"; fi
-      '')
-      (pkgs.writeShellScriptBin "dunst_pause" ''
-        set -e
-        if command -v dunstctl >/dev/null 2>&1; then dunstctl set-paused toggle; fi
-      '')
-    ];
-
-    # --- BLUETOOTH TOGGLE (click on bt module already opens blueman-manager) ---
-    home.packages = (config.home.packages or []) ++ [
-      (pkgs.writeShellScriptBin "bluetooth_toggle" ''
-        set -e
-        if command -v rfkill >/dev/null 2>&1; then
-          if rfkill -r | grep -i bluetooth | awk '{print $4}' | grep -q "blocked"; then
-            rfkill unblock bluetooth
-          else
-            rfkill block bluetooth
-          fi
-        fi
-      '')
-    ];
-
-    # --- NIGHT MODE (very light: just toggles a flag file & prints state)
-    # Plug in your actual tool (gammastep/wlsunset/hyprshade) in the toggle section if desired.
-    home.packages = (config.home.packages or []) ++ [
-      (pkgs.writeShellScriptBin "night_mode_status" ''
-        set -e
-        ST="${XDG_STATE_HOME:-$HOME/.local/state}/waybar/nightmode"
-        if [ -f "$ST" ]; then echo "night: on"; else echo "night: off"; fi
-      '')
-      (pkgs.writeShellScriptBin "night_mode_toggle" ''
-        set -e
-        ST="${XDG_STATE_HOME:-$HOME/.local/state}/waybar/nightmode"
-        mkdir -p "$(dirname "$ST")"
-        if [ -f "$ST" ]; then
-          rm -f "$ST"
-          # TODO: disable your night tool here (e.g., pkill gammastep)
-        else
-          touch "$ST"
-          # TODO: enable your night tool here (e.g., gammastep -O 3500 &)
-        fi
-      '')
-    ];
-
-    # --- CUSTOM BATTERY (safe on desktops; hides itself if none) ---
-    home.packages = (config.home.packages or []) ++ [
-      (pkgs.writeShellScriptBin "custom_battery" ''
-        set -e
-        # Try upower first
-        if command -v upower >/dev/null 2>&1; then
-          BAT="$(upower -e | grep -E '(battery|BAT)' | head -n1 || true)"
-          if [ -n "$BAT" ]; then
-            PCT="$(upower -i "$BAT" | awk '/percentage:/ {print $2}' | tr -d '%')"
-            STATE="$(upower -i "$BAT" | awk '/state:/ {print $2}')"
-            CLASS="ok"
-            [ "$PCT" -lt 20 ] && CLASS="warning"
-            [ "$PCT" -lt 10 ] && CLASS="critical"
-            echo "{\"text\":\"${PCT}%\",\"class\":\"${CLASS}\",\"tooltip\":\"${STATE}\"}"
-            exit 0
-          fi
-        fi
-        # Fallback sysfs
-        SYSBAT="$(ls -d /sys/class/power_supply/BAT* 2>/dev/null | head -n1 || true)"
-        if [ -n "$SYSBAT" ]; then
-          PCT="$(cat "$SYSBAT/capacity" 2>/dev/null || echo 0)"
-          CLASS="ok"
-          [ "$PCT" -lt 20 ] && CLASS="warning"
-          [ "$PCT" -lt 10 ] && CLASS="critical"
-          echo "{\"text\":\"${PCT}%\",\"class\":\"${CLASS}\"}"
-          exit 0
-        fi
-        # No battery: hide
-        echo "{\"text\":\"\",\"class\":\"hidden\"}"
-      '')
-    ];
-
-    # -----------
-    # Write files
-    # -----------
-    xdg.configFile."waybar/macchiato.css".text =
-      (if cfg.useStylixPalette then cfg.stylixPaletteCss else cssPaletteMacchiato);
-
-    xdg.configFile."waybar/config".text = jsoncConfig;
-    xdg.configFile."waybar/style.css".text = cssStyle;
+    # >>> Single assignment only <<<
+    home.packages = basePkgs ++ helpers;
   };
 }
