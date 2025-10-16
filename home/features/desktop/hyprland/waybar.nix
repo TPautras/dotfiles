@@ -85,7 +85,6 @@ window.top_bar, window.bottom_bar, window.left_bar {
 #idle_inhibitor.activated { color: @green; }
 
 /* States printed by our scripts */
-#custom-night-mode.on { color: @yellow; }
 #custom-wifi.off { color: @overlay0; }
 #custom-airplane.on { color: @peach; }
 #custom-dunst.off { color: @subtext0; }
@@ -174,7 +173,7 @@ window.top_bar, window.bottom_bar, window.left_bar {
     "position": "bottom",
     "layer": "${cfg.layer}",
     "modules-left": [
-      "mpris", "custom/night-mode", "custom/wifi", "custom/airplane", "custom/dunst"
+      "mpris", "custom/wifi", "custom/airplane", "custom/dunst"
     ],
     "modules-center": [],
     "modules-right": [ "hyprland/language" ],
@@ -190,7 +189,6 @@ window.top_bar, window.bottom_bar, window.left_bar {
 
     "hyprland/language": { "format": "{}", "flags": true },
 
-    "custom/night-mode": { "interval": 2, "exec": "night_mode_status", "on-click": "night_mode_toggle", "return-type": "text" },
     "custom/wifi":       { "interval": 2, "exec": "wifi_status",       "on-click": "wifi_toggle",       "return-type": "text" },
     "custom/airplane":   { "interval": 2, "exec": "airplane_mode_status", "on-click": "airplane_mode_toggle", "return-type": "text" },
     "custom/dunst":      { "interval": 2, "exec": "dunst_status",      "on-click": "dunst_pause",       "return-type": "text" }
@@ -266,24 +264,6 @@ window.top_bar, window.bottom_bar, window.left_bar {
         else
           rfkill block bluetooth
         fi
-      fi
-    '')
-
-    (writeShellScriptBin "night_mode_status" ''
-      set -e
-      ST="${XDG_STATE_HOME:-$HOME/.local/state}/waybar/nightmode"
-      if [ -f "$ST" ]; then echo "night: on"; else echo "night: off"; fi
-    '')
-    (writeShellScriptBin "night_mode_toggle" ''
-      set -e
-      ST="${XDG_STATE_HOME:-$HOME/.local/state}/waybar/nightmode"
-      mkdir -p "$(dirname "$ST")"
-      if [ -f "$ST" ]; then
-        rm -f "$ST"
-        # TODO: disable your night tool here (e.g., pkill gammastep)
-      else
-        touch "$ST"
-        # TODO: enable your night tool here (e.g., gammastep -O 3500 &)
       fi
     '')
 
