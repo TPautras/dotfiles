@@ -31,7 +31,7 @@
         jade = nixpkgs.lib.nixosSystem {
           specialArgs = { 
             inherit inputs outputs;
-            host ="jade" 
+            host ="jade"; 
           };
           modules = [ ./hosts/jade ];
         };
