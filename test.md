@@ -1,699 +1,871 @@
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:03.609] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:03.609] [debug] Cmd exited with code 127
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:03.611] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:03.611] [debug] Cmd exited with code 127
-sh: line 1: night_mode_status: command not found
-[2025-10-16 22:18:05.614] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:05.614] [debug] Cmd exited with code 127
-sh: line 1: wifi_status: command not found
-[2025-10-16 22:18:05.616] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:05.616] [debug] Cmd exited with code 127
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:05.617] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:05.617] [debug] Cmd exited with code 127
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:05.619] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:05.619] [debug] Cmd exited with code 127
-sh: line 1: night_mode_status: command not found
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:07.621] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:07.622] [debug] Cmd exited with code 127
-[2025-10-16 22:18:07.622] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:07.622] [debug] Cmd exited with code 127
-sh: line 1: wifi_status: command not found
-[2025-10-16 22:18:07.623] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:07.623] [debug] Cmd exited with code 127
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:07.624] [debug] Cmd exited with code 127
-[2025-10-16 22:18:07.624] [debug] Received SIGCHLD in signalThre
-sh: line 1: night_mode_status: command not found
-[2025-10-16 22:18:09.629] [debug] Received SIGCHLD in signalThre
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:09.629] [debug] Cmd exited with code 127
-[2025-10-16 22:18:09.629] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:09.629] [debug] Cmd exited with code 127
-sh: line 1: wifi_status: command not found
-[2025-10-16 22:18:09.631] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:09.631] [debug] Cmd exited with code 127
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:09.632] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:09.632] [debug] Cmd exited with code 127
-sh: line 1: night_mode_status: command not found
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:11.636] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:11.636] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:11.636] [debug] Cmd exited with code 127
-[2025-10-16 22:18:11.636] [debug] Cmd exited with code 127
-sh: line 1: wifi_status: command not found
-[2025-10-16 22:18:11.638] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:11.638] [debug] Cmd exited with code 127
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:11.639] [debug] Cmd exited with code 127
-[2025-10-16 22:18:11.639] [debug] Received SIGCHLD in signalThre
-sh: line 1: night_mode_status: command not found
-[2025-10-16 22:18:13.644] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:13.644] [debug] Cmd exited with code 127
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:13.644] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:13.644] [debug] Cmd exited with code 127
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:13.645] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:13.646] [debug] Cmd exited with code 127
-sh: line 1: wifi_status: command not found
-[2025-10-16 22:18:13.647] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:13.647] [debug] Cmd exited with code 127
-^C[2025-10-16 22:18:15.003] [info] Quitting.
-*** impl_ext_end_proxy called from wrong context, check thread a
-[2025-10-16 22:18:15.009] [debug] hyprland IPC received closelay
-[2025-10-16 22:18:15.010] [debug] hyprland IPC received closelay
-^C^C^C^Cfish: Job 1, 'waybar -l trace' terminated by signal SIGS
-⏎                        waybar -l trace^C
-thomas@jade ~ [SIGSEGV]> eza --icons --group-directories-first
- .cache
- .config
- .dotfiles
- .dotnet
- .gnupg
- .local
- .mozilla
- .nix-defexpr
- .nix-profile -> /home/thomas/.local/state/nix/profiles/profile
- .pki
- .var
- .vscode
- Desktop
- Documents
-󰉍 Downloads
-󱍙 Music
-󰉏 Pictures
- Public
- Templates
- Videos
-󱆃 .bash_history
- .gitconfig
- .gtkrc-2.0
- .manpath -> /nix/store/kxvbjji6nfpzm5cn05fp5br2pvrmc22n-home-m
-anager-files/.manpath
- .nix-channels
- .viminfo
-thomas@jade ~> waybar -l debug
-[2025-10-16 22:18:29.991] [debug] Try expanding: $XDG_CONFIG_HOM
-[2025-10-16 22:18:29.992] [debug] Try expanding: $XDG_CONFIG_HOM
-[2025-10-16 22:18:29.992] [debug] Try expanding: $HOME/.config/w
-[2025-10-16 22:18:29.992] [debug] Found config file: $HOME/.conf
-[2025-10-16 22:18:29.992] [info] Using configuration file /home/
-[2025-10-16 22:18:29.993] [info] Unable to receive desktop appea
-[2025-10-16 22:18:29.993] [debug] Try expanding: $XDG_CONFIG_HOM
-[2025-10-16 22:18:29.993] [debug] Try expanding: $HOME/.config/w
-[2025-10-16 22:18:29.993] [debug] Found config file: $HOME/.conf
-[2025-10-16 22:18:29.993] [info] Using CSS file /home/thomas/.co
-[2025-10-16 22:18:29.996] [debug] Output detection done: eDP-1 (
-[2025-10-16 22:18:29.997] [debug] window-rewrite is not defined
-[2025-10-16 22:18:29.997] [info] Hyprland IPC starting
-[2025-10-16 22:18:29.998] [debug] Initializing workspaces
-[2025-10-16 22:18:29.999] [debug] Initializing persistent worksp
-[2025-10-16 22:18:29.999] [info] Loading persistent workspaces f
-[2025-10-16 22:18:30.005] [error] findCurController() failed: no
-[2025-10-16 22:18:30.021] [debug] Task (0) setting app_id to unk
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.021] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.022] [debug] Using 'desktop' search path pr
-[2025-10-16 22:18:30.046] [debug] Task (0)  [unknown] <amif> Loa
-[2025-10-16 22:18:30.046] [debug] Task (1) setting app_id to unk
-[2025-10-16 22:18:30.049] [debug] Task (1)  [unknown] <amif> Loa
-[2025-10-16 22:18:30.050] [debug] Task (2) setting app_id to unk
-[2025-10-16 22:18:30.053] [debug] Task (2)  [unknown] <amif> Loa
-[2025-10-16 22:18:30.053] [debug] Task (0) overwriting app_id 'u
-[2025-10-16 22:18:30.069] [debug] Task (0) waybar.nix - .dotfile
-[2025-10-16 22:18:30.069] [debug] Task (0) waybar.nix - .dotfile
-[2025-10-16 22:18:30.069] [debug] Task (0) waybar.nix - .dotfile
-[2025-10-16 22:18:30.069] [debug] Task (0) waybar.nix - .dotfile
-[2025-10-16 22:18:30.069] [debug] Task (1) overwriting app_id 'u
-[2025-10-16 22:18:30.073] [debug] Task (1) Zellij (loyal-apricot
-[2025-10-16 22:18:30.073] [debug] Task (1) Zellij (loyal-apricot
-[2025-10-16 22:18:30.073] [debug] Task (1) Zellij (loyal-apricot
-[2025-10-16 22:18:30.073] [debug] Task (1) Zellij (loyal-apricot
-[2025-10-16 22:18:30.073] [debug] Task (2) overwriting app_id 'u
-[2025-10-16 22:18:30.073] [debug] Task (2) Zellij (triangular-le
-[2025-10-16 22:18:30.073] [debug] Task (2) Zellij (triangular-le
-[2025-10-16 22:18:30.074] [debug] Task (2) Zellij (triangular-le
-[2025-10-16 22:18:30.074] [debug] Task (2) Zellij (triangular-le
-[2025-10-16 22:18:30.074] [debug] GTK widget tree:
-window#waybar.background.top.top_bar.eDP-1.mode-default:dir(ltr)
-  decoration:dir(ltr)
-  box.horizontal:dir(ltr)
-    box.horizontal.modules-left:dir(ltr)
-      widget:dir(ltr)
-        box#workspaces.horizontal.module:dir(ltr)
-      widget:dir(ltr)
-        label#submap.module:dir(ltr)
-      widget:dir(ltr)
-        box#window.horizontal.module:dir(ltr)
-          image:dir(ltr)
-          label:dir(ltr)
-    box.horizontal.modules-center:dir(ltr)
-      widget:dir(ltr)
-        box#taskbar.horizontal.module:dir(ltr)
-          button.flat:dir(ltr)
-            box.horizontal:dir(ltr)
-              [label:dir(ltr)]
-              image:dir(ltr)
-              [label:dir(ltr)]
-          button.flat:dir(ltr)
-            box.horizontal:dir(ltr)
-              [label:dir(ltr)]
-              image:dir(ltr)
-              [label:dir(ltr)]
-          button.flat.active:dir(ltr)
-            box.horizontal:dir(ltr)
-              [label:dir(ltr)]
-              image:dir(ltr)
-              [label:dir(ltr)]
-    box.horizontal.modules-right:dir(ltr)
-      widget:dir(ltr)
-        box#privacy.horizontal:dir(ltr)
-          revealer:dir(ltr)
-            box#privacy-item.horizontal.screenshare:dir(ltr)
-              image:dir(ltr)
-          revealer:dir(ltr)
-            box#privacy-item.horizontal.audio-in:dir(ltr)
-              image:dir(ltr)
-      widget:dir(ltr)
-        label#pulseaudio.module:dir(ltr)
-      widget:dir(ltr)
-        label#bluetooth.module.no-controller:dir(ltr)
-      widget:dir(ltr)
-        label#network.module:dir(ltr)
-      widget:dir(ltr)
-        label#battery.module:dir(ltr)
-      widget:dir(ltr)
-        label#backlight.module:dir(ltr)
-      widget:dir(ltr)
-        label#cpu.module:dir(ltr)
-      widget:dir(ltr)
-        label#memory.module:dir(ltr)
-      widget:dir(ltr)
-        label#temperature.module:dir(ltr)
-      widget:dir(ltr)
-        label#disk.module:dir(ltr)
-      widget:dir(ltr)
-        label#systemd-failed-units.module:dir(ltr)
-      widget:dir(ltr)
-        label#clock.module:dir(ltr)
+sudo nixos-rebuild switch --flake .#jade --show-trace --print-build-logs --verbose
+$ nix --extra-experimental-features nix-command flakes build --out-link /tmp/nixos-rebuild.n4ui7L/nixos-rebuild .#nixosConfigurations."jade".config.system.build.nixos-rebuild --sh
+ow-trace --print-build-logs --verbose                                                                                                                                              $ exec /nix/store/r6x37z9h1aifnpj406a2a31wwxhvamd4-nixos-rebuild/bin/nixos-rebuild switch --flake .#jade --show-trace --print-build-logs --verbose
+building the system configuration...
+Building in flake mode.
+$ nix --extra-experimental-features nix-command flakes build .#nixosConfigurations."jade".config.system.build.toplevel --show-trace --print-build-logs --verbose --out-link /tmp/ni
+xos-rebuild.DbtFCz/result                                                                                                                                                          error:
+       … while calling anonymous lambda
 
-sh: line 1: night_mode_status: command not found
-[2025-10-16 22:18:30.087] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:30.087] [debug] Cmd exited with code 127
-sh: line 1: wifi_status: command not found
-[2025-10-16 22:18:30.088] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:30.088] [debug] Cmd exited with code 127
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:30.090] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:30.090] [debug] Cmd exited with code 127
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:30.091] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:30.091] [debug] Cmd exited with code 127
-[2025-10-16 22:18:30.099] [debug] hyprland language initLanguage
-[2025-10-16 22:18:30.100] [debug] GTK widget tree:
-window#waybar.background.bottom.bottom_bar.eDP-1.mode-default:di
-  decoration:dir(ltr)
-  box.horizontal:dir(ltr)
-    box.horizontal.modules-left:dir(ltr)
-      widget:dir(ltr)
-        label#mpris.module:dir(ltr)
-      widget:dir(ltr)
-        label#custom-night-mode.module:dir(ltr)
-      widget:dir(ltr)
-        label#custom-wifi.module:dir(ltr)
-      widget:dir(ltr)
-        label#custom-airplane.module:dir(ltr)
-      widget:dir(ltr)
-        label#custom-dunst.module:dir(ltr)
-    box.horizontal.modules-center:dir(ltr)
-    box.horizontal.modules-right:dir(ltr)
-      widget:dir(ltr)
-        label#language.module:dir(ltr)
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1537:24:
 
-[2025-10-16 22:18:30.101] [debug] Task (3) setting app_id to unk
-[2025-10-16 22:18:30.105] [debug] Task (3)  [unknown] <amif> Loa
-[2025-10-16 22:18:30.105] [debug] Task (4) setting app_id to unk
-[2025-10-16 22:18:30.108] [debug] Task (4)  [unknown] <amif> Loa
-[2025-10-16 22:18:30.108] [debug] Task (5) setting app_id to unk
-[2025-10-16 22:18:30.111] [debug] Task (5)  [unknown] <amif> Loa
-[2025-10-16 22:18:30.111] [debug] Task (3) overwriting app_id 'u
-[2025-10-16 22:18:30.129] [debug] Task (3) waybar.nix - .dotfile
-[2025-10-16 22:18:30.129] [debug] Task (3) waybar.nix - .dotfile
-[2025-10-16 22:18:30.130] [debug] Task (3) waybar.nix - .dotfile
-[2025-10-16 22:18:30.130] [debug] Task (3) waybar.nix - .dotfile
-[2025-10-16 22:18:30.130] [debug] Task (4) overwriting app_id 'u
-[2025-10-16 22:18:30.131] [debug] Task (4) Zellij (loyal-apricot
-[2025-10-16 22:18:30.131] [debug] Task (4) Zellij (loyal-apricot
-[2025-10-16 22:18:30.131] [debug] Task (4) Zellij (loyal-apricot
-[2025-10-16 22:18:30.131] [debug] Task (4) Zellij (loyal-apricot
-[2025-10-16 22:18:30.131] [debug] Task (5) overwriting app_id 'u
-[2025-10-16 22:18:30.131] [debug] Task (5) Zellij (triangular-le
-[2025-10-16 22:18:30.131] [debug] Task (5) Zellij (triangular-le
-[2025-10-16 22:18:30.132] [debug] Task (5) Zellij (triangular-le
-[2025-10-16 22:18:30.132] [debug] Task (5) Zellij (triangular-le
-[2025-10-16 22:18:30.132] [debug] GTK widget tree:
-window#waybar.background.left.left_bar.eDP-1.mode-default:dir(lt
-  decoration:dir(ltr)
-  box.vertical:dir(ltr)
-    box.vertical.modules-left:dir(ltr)
-      widget:dir(ltr)
-        box#taskbar.vertical.module:dir(ltr)
-          button.flat:dir(ltr)
-            box.vertical:dir(ltr)
-              [label:dir(ltr)]
-              image:dir(ltr)
-              [label:dir(ltr)]
-          button.flat:dir(ltr)
-            box.vertical:dir(ltr)
-              [label:dir(ltr)]
-              image:dir(ltr)
-              [label:dir(ltr)]
-          button.flat.active:dir(ltr)
-            box.vertical:dir(ltr)
-              [label:dir(ltr)]
-              image:dir(ltr)
-              [label:dir(ltr)]
-    box.vertical.modules-center:dir(ltr)
-    box.vertical.modules-right:dir(ltr)
+         1536|     let f = attrPath:
+         1537|       zipAttrsWith (n: values:
+             |                        ^
+         1538|         let here = attrPath ++ [n]; in
 
-[2025-10-16 22:18:30.132] [debug] Creating workspace 1
-[2025-10-16 22:18:30.132] [debug] Creating workspace 2
-[2025-10-16 22:18:30.294] [error] battery: argument not found
-[2025-10-16 22:18:30.406] [info] Bar configured (width: 1590, he
-[2025-10-16 22:18:30.406] [info] Bar configured (width: 1176, he
-[2025-10-16 22:18:30.406] [info] Bar configured (width: 52, heig
-[2025-10-16 22:18:30.410] [debug] hyprland IPC received openlaye
-[2025-10-16 22:18:30.411] [debug] hyprland IPC received openlaye
-[2025-10-16 22:18:30.412] [debug] hyprland IPC received openlaye
-sh: line 1: night_mode_status: command not found
-[2025-10-16 22:18:32.095] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:32.095] [debug] Cmd exited with code 127
-sh: line 1: wifi_status: command not found
-[2025-10-16 22:18:32.096] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:32.096] [debug] Cmd exited with code 127
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:32.097] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:32.097] [debug] Cmd exited with code 127
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:32.098] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:32.098] [debug] Cmd exited with code 127
-sh: line 1: night_mode_status: command not found
-[2025-10-16 22:18:34.101] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:34.101] [debug] Cmd exited with code 127
-sh: line 1: wifi_status: command not found
-[2025-10-16 22:18:34.102] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:34.102] [debug] Cmd exited with code 127
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:34.104] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:34.104] [debug] Cmd exited with code 127
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:34.106] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:34.106] [debug] Cmd exited with code 127
-exit
-sh: line 1: night_mode_status: command not found
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:36.108] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:36.108] [debug] Received SIGCHLD in signalThre
-[2025-10-16 22:18:36.108] [debug] Cmd exited with code 127
-[2025-10-16 22:18:36.108] [debug] Cmd exited with code 127
-sh: line 1: wifi_status: command not found
-[2025-10-16 22:18:36.110] [debug] Cmd exited with code 127
-[2025-10-16 22:18:36.110] [debug] Received SIGCHLD in signalThre
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:36.111] [debug] Received SIGCHLD in signalThread
-[2025-10-16 22:18:36.111] [debug] Cmd exited with code 127
-sh: line 1: night_mode_status: command not found
-sh: line 1: airplane_mode_status: command not found
-[2025-10-16 22:18:38.116] [debug] Received SIGCHLD in signalThread
-[2025-10-16 22:18:38.116] [debug] Cmd exited with code 127
-[2025-10-16 22:18:38.116] [debug] Received SIGCHLD in signalThread
-[2025-10-16 22:18:38.116] [debug] Cmd exited with code 127
-sh: line 1: wifi_status: command not found
-[2025-10-16 22:18:38.118] [debug] Cmd exited with code 127
-[2025-10-16 22:18:38.118] [debug] Received SIGCHLD in signalThread
-sh: line 1: dunst_status: command not found
-[2025-10-16 22:18:38.119] [debug] Received SIGCHLD in signalThread
-[2025-10-16 22:18:38.119] [debug] Cmd exited with code 127
-^C[2025-10-16 22:18:39.439] [info] Quitting.
-*** impl_ext_end_proxy called from wrong context, check thread and locking: Operation not permitted
-[2025-10-16 22:18:39.444] [debug] hyprland IPC received closelayer>>waybar
-[2025-10-16 22:18:39.445] [debug] hyprland IPC received closelayer>>waybar
-^C^Cfish: Job 1, 'waybar -l debug' terminated by signal SIGSEGV (Address boundary error)
-⏎                                                             thomas@jade ~ [SIGSEGV]>
-{ config, lib, pkgs, ... }:
+       … while calling anonymous lambda
 
-let
-  cfg = config.features.desktop.waybar;
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1171:18:
 
-  # === Contenus inline depuis tes fichiers ===
-  cssPaletteMacchiato = ''
-/*
-*
-* Catppuccin Macchiato palette
-* (extracted from your macchiato.css)
-* Feel free to edit/replace.
-*/
-@define-color base      #24273a;
-@define-color mantle    #1e2030;
-@define-color crust     #181926;
-@define-color text      #cad3f5;
-@define-color subtext0  #a5adcb;
-@define-color subtext1  #b8c0e0;
-@define-color overlay0  #6e738d;
-@define-color overlay1  #8087a2;
-@define-color overlay2  #939ab7;
-@define-color surface0  #363a4f;
-@define-color surface1  #494d64;
-@define-color surface2  #5b6078;
-@define-color blue      #8aadf4;
-@define-color lavender  #b7bdf8;
-@define-color sapphire  #7dc4e4;
-@define-color sky       #91d7e3;
-@define-color teal      #8bd5ca;
-@define-color green     #a6da95;
-@define-color yellow    #eed49f;
-@define-color peach     #f5a97f;
-@define-color maroon    #ee99a0;
-@define-color red       #ed8796;
-@define-color mauve     #c6a0f6;
-@define-color pink      #f5bde6;
-@define-color flamingo  #f0c6c6;
-@define-color rosewater #f4dbd6;
-'';
+         1170|         mapAttrs
+         1171|           (name: value:
+             |                  ^
+         1172|             if isAttrs value && cond value
 
-  cssStyle = ''
-/* style.css — imports palette then rules (from your style.css) */
-@import "macchiato.css";
+       … from call site
 
-/* Windows */
-window.top_bar,
-window.bottom_bar,
-window.left_bar {
-  background: transparent;
-  color: @text;
-}
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1174:18:
 
-/* Modules */
-#bluetooth,
-#network,
-#pulseaudio,
-#battery,
-#clock,
-#temperature,
-#memory,
-#cpu,
-#disk,
-#backlight,
-#idle_inhibitor,
-#privacy,
-#custom-media,
-#custom-night-mode,
-#custom-wifi,
-#custom-airplane,
-#custom-dunst,
-#custom-power {
-  background: @surface0;
-  color: @text;
-  border-radius: 12px;
-  padding: 4px 8px;
-  margin: 4px 6px;
-}
+         1173|             then recurse (path ++ [ name ]) value
+         1174|             else f (path ++ [ name ]) value);
+             |                  ^
+         1175|     in
 
-/* Hover states */
-#bluetooth:hover,
-#network:hover,
-#pulseaudio:hover,
-#battery:hover,
-#clock:hover,
-#temperature:hover,
-#memory:hover,
-#cpu:hover,
-#disk:hover,
-#backlight:hover,
-#idle_inhibitor:hover,
-#privacy:hover,
-#custom-media:hover,
-#custom-night-mode:hover,
-#custom-wifi:hover,
-#custom-airplane:hover,
-#custom-dunst:hover,
-#custom-power:hover {
-  background: @surface1;
-}
+       … while calling anonymous lambda
 
-/* Accents */
-#battery.warning { color: @peach; }
-#battery.critical { color: @red; }
-#pulseaudio.muted { color: @overlay1; }
-#network.disconnected { color: @red; }
-#bluetooth.off { color: @overlay1; }
-#clock { color: @mauve; }
-#cpu { color: @sky; }
-#memory { color: @sapphire; }
-#disk { color: @teal; }
-#temperature { color: @yellow; }
-#backlight { color: @peach; }
-#idle_inhibitor.activated { color: @green; }
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:242:72:
 
-/* Left bar task buttons */
-#taskbar button {
-  background: @surface0;
-  border-radius: 10px;
-  padding: 2px 6px;
-  margin: 2px 4px;
-  color: @subtext1;
-}
-#taskbar button:hover {
-  background: @surface1;
-  color: @text;
-}
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
 
-/* Special toggles (examples matching your config) */
-#custom-night-mode.on { color: @yellow; }
-#custom-wifi.off    { color: @overlay0; }
-#custom-airplane.on { color: @peach; }
-#custom-dunst.off   { color: @subtext0; }
+       … while evaluating the option `system.build.toplevel':
 
-#systemd-failed-units {
-  color: @red;
-}
-'';
+       … while calling anonymous lambda
 
-  jsoncConfig = ''
-// Double Bar Config (from your config.txt)
-[
-  // Top Bar Config
-  {
-    "name": "top_bar",
-    "height": 36,
-    "position": "top",
-    "layer": "top",
-    "modules-left": [
-      "hyprland/workspaces",
-      "hyprland/submap",
-      "hyprland/window"
-    ],
-    "modules-center": [
-      "wlr/taskbar"
-    ],
-    "modules-right": [
-      "privacy",
-      "pulseaudio",
-      "bluetooth",
-      "network",
-      "battery",
-      "backlight",
-      "cpu",
-      "memory",
-      "temperature",
-      "disk",
-      "systemd-failed-units",
-      "clock"
-    ],
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:824:28:
 
-    "clock": { "format": "{:%Y-%m-%d %H:%M:%S}" },
-    "bluetooth": {
-      "format": "{controller_alias}",
-      "format-connected": "{device_alias}",
-      "format-disabled": "Off",
-      "on-click": "bluetooth_toggle"
-    },
-    "network": {
-      "format-wifi": "{essid} ({signalStrength}%)",
-      "format-ethernet": "{ifname}",
-      "format-disconnected": "Disconnected",
-      "on-click": "wifi_toggle"
-    },
-    "pulseaudio": {
-      "format": "{volume}%",
-      "format-muted": "Muted",
-      "scroll-step": 1,
-      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-    },
-    "battery": {
-      "states": { "warning": 20, "critical": 10 },
-      "format": "{capacity}% {timeTo}"
-    },
-    "backlight": { "format": "{percent}%" },
-    "cpu": { "format": "{usage}%" },
-    "memory": { "format": "{percentage}%" },
-    "temperature": { "format": "{temperatureC}°C" },
-    "disk": { "interval": 30, "format": "{free} free" },
-    "systemd-failed-units": { "format": "✗ {nr_failed}" },
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                  
+       … while evaluating definitions from `/nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/nixos/modules/system/activation/top-level.nix':
 
-    "privacy": {
-      "icon-size": 20,
-      "icon-spacing": 6,
-      "icon-dimmed-opacity": 0.3
-    },
+       … from call site
 
-    "wlr/taskbar": {
-      "format": "{icon} {title}",
-      "icon-size": 18,
-      "all-outputs": true
-    },
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:825:137:
 
-    "hyprland/window": {
-      "format": "{class} — {title}",
-      "separate-outputs": true
-    },
-    "hyprland/workspaces": {
-      "on-scroll-up": "hyprctl dispatch workspace e+1",
-      "on-scroll-down": "hyprctl dispatch workspace e-1",
-      "format": "{icon}"
-    }
-  },
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                               |                                                                                                                                         ^
+          826|         ) defs;
 
-  // Bottom Bar Config
-  {
-    "name": "bottom_bar",
-    "height": 36,
-    "position": "bottom",
-    "layer": "top",
-    "modules-left": [
-      "mpris",
-      "custom/night-mode",
-      "custom/wifi",
-      "custom/airplane",
-      "custom/dunst"
-    ],
-    "modules-center": [],
-    "modules-right": [
-      "hyprland/language"
-    ],
+       … while calling 'dischargeProperties'
 
-    "mpris": {
-      "format": "{player_icon} {title} — {artist}",
-      "title-len": 20,
-      "artist-len": 16,
-      "on-click": "playerctl play-pause",
-      "on-scroll-up": "playerctl next",
-      "on-scroll-down": "playerctl previous"
-    },
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:896:25:
 
-    "hyprland/language": {
-      "format": "{}",
-      "flags": true
-    },
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
 
-    "custom/night-mode": {
-      "interval": 2,
-      "exec": "night_mode_status",
-      "on-click": "night_mode_toggle"
-    },
-    "custom/wifi": {
-      "interval": 2,
-      "exec": "wifi_status",
-      "on-click": "wifi_toggle"
-    },
-    "custom/airplane": {
-      "interval": 2,
-      "exec": "airplane_mode_status",
-      "on-click": "airplane_mode_toggle"
-    },
-    "custom/dunst": {
-      "interval": 2,
-      "exec": "dunst_status",
-      "on-click": "dunst_pause"
-    }
-  },
+       … from call site
 
-  // Left Bar Config
-  {
-    "name": "left_bar",
-    "width": 52,
-    "position": "left",
-    "layer": "bottom",
-    "margin-top": 10,
-    "margin-bottom": 10,
-    "modules-left": [
-      "wlr/taskbar"
-    ],
-    "wlr/taskbar": {
-      "format": "{icon}",
-      "icon-size": 22,
-      "all-outputs": false
-    }
-  }
-]
-'';
-in
-with lib; {
-  options.features.desktop.waybar = {
-    enable = mkEnableOption "Waybar (Hyprland) single-file module";
-    height = mkOption { type = types.int; default = 36; description = "Bar height (visual, via CSS line-height)."; };
-    layer  = mkOption { type = types.enum [ "top" "bottom" ]; default = "top"; description = "Default visual layer hint."; };
-    useStylixPalette = mkOption {
-      type = types.bool;
-      default = false;
-      description = "If true, you can swap macchiato.css content with a Stylix-exported palette (edit below).";
-    };
-    stylixPaletteCss = mkOption {
-      type = types.str;
-      default = "/* Put Stylix-exported CSS palette here if you set useStylixPalette = true; */";
-      description = "Raw CSS with @define-color vars compatible with style.css import.";
-    };
-  };
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/nixos/modules/system/activation/top-level.nix:71:12:
 
-  config = mkIf cfg.enable {
-    programs.waybar.enable = true;
+           70|   # Replace runtime dependencies
+           71|   system = foldr ({ oldDependency, newDependency }: drv:
+             |            ^
+           72|       pkgs.replaceDependency { inherit oldDependency newDependency drv; }
 
-    # Déploie les 3 fichiers Waybar depuis ce Nix unique
-    xdg.configFile."waybar/config".text = jsoncConfig;
+       … while calling 'foldr'
 
-    xdg.configFile."waybar/style.css".text = ''
-${cssStyle}
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/lists.nix:121:20:
 
-/* Nix-driven tweaks */
-window#waybar { /* purely visual hint if you want */
-  /* layer: ${cfg.layer}; */
-}
-'';
+          120|   */
+          121|   foldr = op: nul: list:
+             |                    ^
+          122|     let
 
-    xdg.configFile."waybar/macchiato.css".text =
-      (if cfg.useStylixPalette then cfg.stylixPaletteCss else cssPaletteMacchiato);
+       … from call site
 
-    # Dépendances utiles
-    home.packages = with pkgs; [
-      jq pango cairo gdk-pixbuf
-      noto-fonts noto-fonts-emoji
-      playerctl pavucontrol iwgtk
-      # ajoute ici les outils appelés par les scripts custom si besoin
-    ];
-  };
-}
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/lists.nix:128:8:
+
+          127|         else op (elemAt list n) (fold' (n + 1));
+          128|     in fold' 0;
+             |        ^
+          129|
+
+       … while calling 'fold''
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/lists.nix:124:15:
+
+          123|       len = length list;
+          124|       fold' = n:
+             |               ^
+          125|         if n == len
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/nixos/modules/system/activation/top-level.nix:68:10:
+
+           67|     then throw "\nFailed assertions:\n${concatStringsSep "\n" (map (x: "- ${x}") failedAssertions)}"
+           68|     else showWarnings config.warnings baseSystem;
+             |          ^
+           69|
+
+       … while calling 'showWarnings'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/trivial.nix:849:28:
+
+          848|
+          849|   showWarnings = warnings: res: lib.foldr (w: x: warn w x) res warnings;
+             |                            ^
+          850|
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/trivial.nix:849:33:
+
+          848|
+          849|   showWarnings = warnings: res: lib.foldr (w: x: warn w x) res warnings;
+             |                                 ^
+          850|
+
+       … while calling 'foldr'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/lists.nix:121:20:
+
+          120|   */
+          121|   foldr = op: nul: list:
+             |                    ^
+          122|     let
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/lists.nix:128:8:
+
+          127|         else op (elemAt list n) (fold' (n + 1));
+          128|     in fold' 0;
+             |        ^
+          129|
+
+       … while calling 'fold''
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/lists.nix:124:15:
+
+          123|       len = length list;
+          124|       fold' = n:
+             |               ^
+          125|         if n == len
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1171:18:
+
+         1170|         mapAttrs
+         1171|           (name: value:
+             |                  ^
+         1172|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1174:18:
+
+         1173|             then recurse (path ++ [ name ]) value
+         1174|             else f (path ++ [ name ]) value);
+             |                  ^
+         1175|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `warnings':
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:824:28:
+
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                  
+       … while evaluating definitions from `/nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/nixos/modules/system/boot/systemd.nix':
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:825:137:
+
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                               |                                                                                                                                         ^
+          826|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:896:25:
+
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1062:10:
+
+         1061|     attrs:
+         1062|     map (name: f name attrs.${name}) (attrNames attrs);
+             |          ^
+         1063|
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1062:16:
+
+         1061|     attrs:
+         1062|     map (name: f name attrs.${name}) (attrNames attrs);
+             |                ^
+         1063|
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/nixos/modules/system/boot/systemd.nix:440:16:
+
+          439|       mapAttrsToList
+          440|         (name: service:
+             |                ^
+          441|           let
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/nixos/modules/system/boot/systemd.nix:447:16:
+
+          446|             concatLists [
+          447|               (optional (type == "oneshot" && (restart == "always" || restart == "on-success"))
+             |                ^
+          448|                 "Service '${name}.service' with 'Type=oneshot' cannot have 'Restart=always' or 'Restart=on-success'"
+
+       … while calling 'optional'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/lists.nix:736:20:
+
+          735|   */
+          736|   optional = cond: elem: if cond then [elem] else [];
+             |                    ^
+          737|
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1171:18:
+
+         1170|         mapAttrs
+         1171|           (name: value:
+             |                  ^
+         1172|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1174:18:
+
+         1173|             then recurse (path ++ [ name ]) value
+         1174|             else f (path ++ [ name ]) value);
+             |                  ^
+         1175|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `systemd.services.home-manager-thomas.serviceConfig':
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:846:59:
+
+          845|       if isDefined then
+          846|         if all (def: type.check def.value) defsFinal then type.merge loc defsFinal
+             |                                                           ^
+          847|         else let allInvalid = filter (def: ! type.check def.value) defsFinal;
+
+       … while calling 'merge'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/types.nix:568:20:
+
+          567|       check = isAttrs;
+          568|       merge = loc: defs:
+             |                    ^
+          569|         mapAttrs (n: v: v.value) (filterAttrs (n: v: v ? value) (zipAttrsWith (name: defs:
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/types.nix:569:35:
+
+          568|       merge = loc: defs:
+          569|         mapAttrs (n: v: v.value) (filterAttrs (n: v: v ? value) (zipAttrsWith (name: defs:
+             |                                   ^
+          570|             (mergeDefinitions (loc ++ [name]) elemType defs).optionalValue
+
+       … while calling 'filterAttrs'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:646:5:
+
+          645|     pred:
+          646|     set:
+             |     ^
+          647|     listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:647:29:
+
+          646|     set:
+          647|     listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
+             |                             ^
+          648|
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:647:62:
+
+          646|     set:
+          647|     listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
+             |                                                              ^
+          648|
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/types.nix:569:51:
+
+          568|       merge = loc: defs:
+          569|         mapAttrs (n: v: v.value) (filterAttrs (n: v: v ? value) (zipAttrsWith (name: defs:
+             |                                                   ^
+          570|             (mergeDefinitions (loc ++ [name]) elemType defs).optionalValue
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/types.nix:569:86:
+
+          568|       merge = loc: defs:
+          569|         mapAttrs (n: v: v.value) (filterAttrs (n: v: v ? value) (zipAttrsWith (name: defs:
+             |                                                                                      ^
+          570|             (mergeDefinitions (loc ++ [name]) elemType defs).optionalValue
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:824:28:
+
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                  
+       … while evaluating definitions from `/nix/store/0zzcahfwhrnb7kzgkragzawhici6q3qn-source/hosts/common':
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:825:137:
+
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                               |                                                                                                                                         ^
+          826|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:896:25:
+
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
+
+       … while evaluating derivation 'home-manager-generation'
+         whose name attribute is located at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/pkgs/stdenv/generic/make-derivation.nix:331:7
+
+       … while evaluating attribute 'buildCommand' of derivation 'home-manager-generation'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/pkgs/build-support/trivial-builders/default.nix:68:16:
+
+           67|         enableParallelBuilding = true;
+           68|         inherit buildCommand name;
+             |                ^
+           69|         passAsFile = [ "buildCommand" ]
+
+       … while evaluating derivation 'activation-script'
+         whose name attribute is located at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/pkgs/stdenv/generic/make-derivation.nix:331:7
+
+       … while evaluating attribute 'text' of derivation 'activation-script'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/pkgs/build-support/trivial-builders/default.nix:103:16:
+
+          102|       ({
+          103|         inherit text executable checkPhase allowSubstitutes preferLocalBuild;
+             |                ^
+          104|         passAsFile = [ "text" ]
+
+       … while calling 'mkCmd'
+
+         at /nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/home-environment.nix:666:17:
+
+          665|       let
+          666|         mkCmd = res: ''
+             |                 ^
+          667|             _iNote "Activating %s" "${res.name}"
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1171:18:
+
+         1170|         mapAttrs
+         1171|           (name: value:
+             |                  ^
+         1172|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1174:18:
+
+         1173|             then recurse (path ++ [ name ]) value
+         1174|             else f (path ++ [ name ]) value);
+             |                  ^
+         1175|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `home-manager.users.thomas.home.activation.checkFilesChanged.data':
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:824:28:
+
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                  
+       … while evaluating definitions from `/nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/files.nix':
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:825:137:
+
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                               |                                                                                                                                         ^
+          826|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:896:25:
+
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
+
+       … from call site
+
+         at /nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/files.nix:301:12:
+
+          300|         declare -A changedFiles
+          301|       '' + concatMapStrings (v:
+             |            ^
+          302|         let
+
+       … while calling 'concatMapStrings'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/strings.nix:60:25:
+
+           59|   */
+           60|   concatMapStrings = f: list: concatStrings (map f list);
+             |                         ^
+           61|
+
+       … while calling anonymous lambda
+
+         at /nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/files.nix:301:30:
+
+          300|         declare -A changedFiles
+          301|       '' + concatMapStrings (v:
+             |                              ^
+          302|         let
+
+       … from call site
+
+         at /nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/files.nix:303:23:
+
+          302|         let
+          303|           sourceArg = escapeShellArg (sourceStorePath v);
+             |                       ^
+          304|           targetArg = escapeShellArg v.target;
+
+       … while calling 'escapeShellArg'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/strings.nix:442:20:
+
+          441|   */
+          442|   escapeShellArg = arg: "'${replaceStrings ["'"] ["'\\''"] (toString arg)}'";
+             |                    ^
+          443|
+
+       … from call site
+
+         at /nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/files.nix:303:39:
+
+          302|         let
+          303|           sourceArg = escapeShellArg (sourceStorePath v);
+             |                                       ^
+          304|           targetArg = escapeShellArg v.target;
+
+       … while calling 'sourceStorePath'
+
+         at /nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/files.nix:15:21:
+
+           14|
+           15|   sourceStorePath = file:
+             |                     ^
+           16|     let
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1171:18:
+
+         1170|         mapAttrs
+         1171|           (name: value:
+             |                  ^
+         1172|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1174:18:
+
+         1173|             then recurse (path ++ [ name ]) value
+         1174|             else f (path ++ [ name ]) value);
+             |                  ^
+         1175|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `home-manager.users.thomas.home.file."/home/thomas/.config/waybar/config".source':
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:824:28:
+
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                  
+       … while evaluating definitions from `/nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/misc/xdg.nix':
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:825:137:
+
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                               |                                                                                                                                         ^
+          826|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:896:25:
+
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1171:18:
+
+         1170|         mapAttrs
+         1171|           (name: value:
+             |                  ^
+         1172|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1174:18:
+
+         1173|             then recurse (path ++ [ name ]) value
+         1174|             else f (path ++ [ name ]) value);
+             |                  ^
+         1175|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `home-manager.users.thomas.xdg.configFile."waybar/config".source':
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:846:17:
+
+          845|       if isDefined then
+          846|         if all (def: type.check def.value) defsFinal then type.merge loc defsFinal
+             |                 ^
+          847|         else let allInvalid = filter (def: ! type.check def.value) defsFinal;
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:846:22:
+
+          845|       if isDefined then
+          846|         if all (def: type.check def.value) defsFinal then type.merge loc defsFinal
+             |                      ^
+          847|         else let allInvalid = filter (def: ! type.check def.value) defsFinal;
+
+       … while calling 'check'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/types.nix:520:15:
+
+          519|       descriptionClass = "noun";
+          520|       check = x: isStringLike x && builtins.substring 0 1 (toString x) == "/";
+             |               ^
+          521|       merge = mergeEqualOption;
+
+       … while evaluating derivation 'waybar-config.json'
+         whose name attribute is located at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/pkgs/stdenv/generic/make-derivation.nix:331:7
+
+       … while evaluating attribute 'value' of derivation 'waybar-config.json'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/pkgs/pkgs-lib/formats.nix:64:7:
+
+           63|       nativeBuildInputs = [ jq ];
+           64|       value = builtins.toJSON value;
+             |       ^
+           65|       passAsFile = [ "value" ];
+
+       … while calling 'makeConfiguration'
+
+         at /nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/programs/waybar.nix:247:25:
+
+          246|     # (strips our custom settings before converting to JSON)
+          247|     makeConfiguration = configuration:
+             |                         ^
+          248|       let
+
+       … from call site
+
+         at /nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/programs/waybar.nix:254:10:
+
+          253|           optionalAttrs (configuration.modules != null) configuration.modules;
+          254|       in removeTopLevelNulls (settingsWithoutModules // settingsModules);
+             |          ^
+          255|
+
+       … while calling 'filterAttrs'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:646:5:
+
+          645|     pred:
+          646|     set:
+             |     ^
+          647|     listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:647:29:
+
+          646|     set:
+          647|     listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
+             |                             ^
+          648|
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:647:62:
+
+          646|     set:
+          647|     listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
+             |                                                              ^
+          648|
+
+       … while calling anonymous lambda
+
+         at /nix/store/8snr5588d68q91dvgsyh82vxd3qcgg4a-source/modules/programs/waybar.nix:243:43:
+
+          242|     # This is not recursive.
+          243|     removeTopLevelNulls = filterAttrs (_: v: v != null);
+             |                                           ^
+          244|
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1537:24:
+
+         1536|     let f = attrPath:
+         1537|       zipAttrsWith (n: values:
+             |                        ^
+         1538|         let here = attrPath ++ [n]; in
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1171:18:
+
+         1170|         mapAttrs
+         1171|           (name: value:
+             |                  ^
+         1172|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/attrsets.nix:1174:18:
+
+         1173|             then recurse (path ++ [ name ]) value
+         1174|             else f (path ++ [ name ]) value);
+             |                  ^
+         1175|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `home-manager.users.thomas.programs.waybar.settings.mainBar.modules-right':
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:846:59:
+
+          845|       if isDefined then
+          846|         if all (def: type.check def.value) defsFinal then type.merge loc defsFinal
+             |                                                           ^
+          847|         else let allInvalid = filter (def: ! type.check def.value) defsFinal;
+
+       … while calling 'merge'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/types.nix:537:20:
+
+          536|       check = isList;
+          537|       merge = loc: defs:
+             |                    ^
+          538|         map (x: x.value) (filter (x: x ? value) (concatLists (imap1 (n: def:
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/types.nix:538:35:
+
+          537|       merge = loc: defs:
+          538|         map (x: x.value) (filter (x: x ? value) (concatLists (imap1 (n: def:
+             |                                   ^
+          539|           imap1 (m: def':
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/lists.nix:334:29:
+
+          333|   */
+          334|   imap1 = f: list: genList (n: f (n + 1) (elemAt list n)) (length list);
+             |                             ^
+          335|
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/lists.nix:334:32:
+
+          333|   */
+          334|   imap1 = f: list: genList (n: f (n + 1) (elemAt list n)) (length list);
+             |                                ^
+          335|
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/types.nix:539:21:
+
+          538|         map (x: x.value) (filter (x: x ? value) (concatLists (imap1 (n: def:
+          539|           imap1 (m: def':
+             |                     ^
+          540|             (mergeDefinitions
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:824:28:
+
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                  
+       … while evaluating definitions from `/nix/store/0zzcahfwhrnb7kzgkragzawhici6q3qn-source/home/features/desktop/waybar/settings.nix':
+
+       … from call site
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:825:137:
+
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value)
+)                                                                                                                                                                                               |                                                                                                                                         ^
+          826|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:896:25:
+
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
+
+       … while calling anonymous lambda
+
+         at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:506:44:
+
+          505|       context = name: ''while evaluating the module argument `${name}' in "${key}":'';
+          506|       extraArgs = builtins.mapAttrs (name: _:
+             |                                            ^
+          507|         builtins.addErrorContext (context name)
+
+       … while evaluating the module argument `host' in "/nix/store/0zzcahfwhrnb7kzgkragzawhici6q3qn-source/home/features/desktop/waybar/settings.nix":
+
+       error: attribute 'host' missing
+
+       at /nix/store/cb1gs888vfqxawvc65q1dk6jzbayh3wz-source/lib/modules.nix:508:28:
+
+          507|         builtins.addErrorContext (context name)
+          508|           (args.${name} or config._module.args.${name})
+             |                            ^
+          509|       ) (lib.functionArgs f);
