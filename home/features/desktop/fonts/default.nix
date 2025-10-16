@@ -21,7 +21,7 @@ in
             fira-code-symbols
             noto-fonts
             noto-fonts-emoji
-            nerd-fonts-jetbrains-mono
+            nerd-fonts.jetbrains-mono
         ];
     };
 }
