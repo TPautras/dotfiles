@@ -1,268 +1,344 @@
-{
-    config,
-    pkgs,
-    lib,
-    programs,
-    networking,
-    ...
-}:
-with lib; let 
-    cfg = config.features.desktop.waybar;
-in {
-    options = {
-        features.desktop.waybar = {
-            enable = mkEnableOption "Waybar, a highly customizable bar for Wayland";
-            description = ''Installs and configures Waybar for Wayland desktop environments.'';
-        };
+{ config, lib, pkgs, ... }:
+
+let
+  cfg = config.features.desktop.waybar;
+
+  # === Contenus inline depuis tes fichiers ===
+  cssPaletteMacchiato = ''
+/*
+*
+* Catppuccin Macchiato palette
+* (extracted from your macchiato.css)
+* Feel free to edit/replace.
+*/
+@define-color base      #24273a;
+@define-color mantle    #1e2030;
+@define-color crust     #181926;
+@define-color text      #cad3f5;
+@define-color subtext0  #a5adcb;
+@define-color subtext1  #b8c0e0;
+@define-color overlay0  #6e738d;
+@define-color overlay1  #8087a2;
+@define-color overlay2  #939ab7;
+@define-color surface0  #363a4f;
+@define-color surface1  #494d64;
+@define-color surface2  #5b6078;
+@define-color blue      #8aadf4;
+@define-color lavender  #b7bdf8;
+@define-color sapphire  #7dc4e4;
+@define-color sky       #91d7e3;
+@define-color teal      #8bd5ca;
+@define-color green     #a6da95;
+@define-color yellow    #eed49f;
+@define-color peach     #f5a97f;
+@define-color maroon    #ee99a0;
+@define-color red       #ed8796;
+@define-color mauve     #c6a0f6;
+@define-color pink      #f5bde6;
+@define-color flamingo  #f0c6c6;
+@define-color rosewater #f4dbd6;
+'';
+
+  cssStyle = ''
+/* style.css — imports palette then rules (from your style.css) */
+@import "macchiato.css";
+
+/* Windows */
+window.top_bar,
+window.bottom_bar,
+window.left_bar {
+  background: transparent;
+  color: @text;
+}
+
+/* Modules */
+#bluetooth,
+#network,
+#pulseaudio,
+#battery,
+#clock,
+#temperature,
+#memory,
+#cpu,
+#disk,
+#backlight,
+#idle_inhibitor,
+#privacy,
+#custom-media,
+#custom-night-mode,
+#custom-wifi,
+#custom-airplane,
+#custom-dunst,
+#custom-power {
+  background: @surface0;
+  color: @text;
+  border-radius: 12px;
+  padding: 4px 8px;
+  margin: 4px 6px;
+}
+
+/* Hover states */
+#bluetooth:hover,
+#network:hover,
+#pulseaudio:hover,
+#battery:hover,
+#clock:hover,
+#temperature:hover,
+#memory:hover,
+#cpu:hover,
+#disk:hover,
+#backlight:hover,
+#idle_inhibitor:hover,
+#privacy:hover,
+#custom-media:hover,
+#custom-night-mode:hover,
+#custom-wifi:hover,
+#custom-airplane:hover,
+#custom-dunst:hover,
+#custom-power:hover {
+  background: @surface1;
+}
+
+/* Accents */
+#battery.warning { color: @peach; }
+#battery.critical { color: @red; }
+#pulseaudio.muted { color: @overlay1; }
+#network.disconnected { color: @red; }
+#bluetooth.off { color: @overlay1; }
+#clock { color: @mauve; }
+#cpu { color: @sky; }
+#memory { color: @sapphire; }
+#disk { color: @teal; }
+#temperature { color: @yellow; }
+#backlight { color: @peach; }
+#idle_inhibitor.activated { color: @green; }
+
+/* Left bar task buttons */
+#taskbar button {
+  background: @surface0;
+  border-radius: 10px;
+  padding: 2px 6px;
+  margin: 2px 4px;
+  color: @subtext1;
+}
+#taskbar button:hover {
+  background: @surface1;
+  color: @text;
+}
+
+/* Special toggles (examples matching your config) */
+#custom-night-mode.on { color: @yellow; }
+#custom-wifi.off    { color: @overlay0; }
+#custom-airplane.on { color: @peach; }
+#custom-dunst.off   { color: @subtext0; }
+
+#systemd-failed-units {
+  color: @red;
+}
+'';
+
+  jsoncConfig = ''
+// Double Bar Config (from your config.txt)
+[
+  // Top Bar Config
+  {
+    "name": "top_bar",
+    "height": 36,
+    "position": "top",
+    "layer": "top",
+    "modules-left": [
+      "hyprland/workspaces",
+      "hyprland/submap",
+      "hyprland/window"
+    ],
+    "modules-center": [
+      "wlr/taskbar"
+    ],
+    "modules-right": [
+      "privacy",
+      "pulseaudio",
+      "bluetooth",
+      "network",
+      "battery",
+      "backlight",
+      "cpu",
+      "memory",
+      "temperature",
+      "disk",
+      "systemd-failed-units",
+      "clock"
+    ],
+
+    "clock": { "format": "{:%Y-%m-%d %H:%M:%S}" },
+    "bluetooth": {
+      "format": "{controller_alias}",
+      "format-connected": "{device_alias}",
+      "format-disabled": "Off",
+      "on-click": "bluetooth_toggle"
+    },
+    "network": {
+      "format-wifi": "{essid} ({signalStrength}%)",
+      "format-ethernet": "{ifname}",
+      "format-disconnected": "Disconnected",
+      "on-click": "wifi_toggle"
+    },
+    "pulseaudio": {
+      "format": "{volume}%",
+      "format-muted": "Muted",
+      "scroll-step": 1,
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+    "battery": {
+      "states": { "warning": 20, "critical": 10 },
+      "format": "{capacity}% {timeTo}"
+    },
+    "backlight": { "format": "{percent}%" },
+    "cpu": { "format": "{usage}%" },
+    "memory": { "format": "{percentage}%" },
+    "temperature": { "format": "{temperatureC}°C" },
+    "disk": { "interval": 30, "format": "{free} free" },
+    "systemd-failed-units": { "format": "✗ {nr_failed}" },
+
+    "privacy": {
+      "icon-size": 20,
+      "icon-spacing": 6,
+      "icon-dimmed-opacity": 0.3
+    },
+
+    "wlr/taskbar": {
+      "format": "{icon} {title}",
+      "icon-size": 18,
+      "all-outputs": true
+    },
+
+    "hyprland/window": {
+      "format": "{class} — {title}",
+      "separate-outputs": true
+    },
+    "hyprland/workspaces": {
+      "on-scroll-up": "hyprctl dispatch workspace e+1",
+      "on-scroll-down": "hyprctl dispatch workspace e-1",
+      "format": "{icon}"
+    }
+  },
+
+  // Bottom Bar Config
+  {
+    "name": "bottom_bar",
+    "height": 36,
+    "position": "bottom",
+    "layer": "top",
+    "modules-left": [
+      "mpris",
+      "custom/night-mode",
+      "custom/wifi",
+      "custom/airplane",
+      "custom/dunst"
+    ],
+    "modules-center": [],
+    "modules-right": [
+      "hyprland/language"
+    ],
+
+    "mpris": {
+      "format": "{player_icon} {title} — {artist}",
+      "title-len": 20,
+      "artist-len": 16,
+      "on-click": "playerctl play-pause",
+      "on-scroll-up": "playerctl next",
+      "on-scroll-down": "playerctl previous"
+    },
+
+    "hyprland/language": {
+      "format": "{}",
+      "flags": true
+    },
+
+    "custom/night-mode": {
+      "interval": 2,
+      "exec": "night_mode_status",
+      "on-click": "night_mode_toggle"
+    },
+    "custom/wifi": {
+      "interval": 2,
+      "exec": "wifi_status",
+      "on-click": "wifi_toggle"
+    },
+    "custom/airplane": {
+      "interval": 2,
+      "exec": "airplane_mode_status",
+      "on-click": "airplane_mode_toggle"
+    },
+    "custom/dunst": {
+      "interval": 2,
+      "exec": "dunst_status",
+      "on-click": "dunst_pause"
+    }
+  },
+
+  // Left Bar Config
+  {
+    "name": "left_bar",
+    "width": 52,
+    "position": "left",
+    "layer": "bottom",
+    "margin-top": 10,
+    "margin-bottom": 10,
+    "modules-left": [
+      "wlr/taskbar"
+    ],
+    "wlr/taskbar": {
+      "format": "{icon}",
+      "icon-size": 22,
+      "all-outputs": false
+    }
+  }
+]
+'';
+in
+with lib; {
+  options.features.desktop.waybar = {
+    enable = mkEnableOption "Waybar (Hyprland) single-file module";
+    height = mkOption { type = types.int; default = 36; description = "Bar height (visual, via CSS line-height)."; };
+    layer  = mkOption { type = types.enum [ "top" "bottom" ]; default = "top"; description = "Default visual layer hint."; };
+    useStylixPalette = mkOption {
+      type = types.bool;
+      default = false;
+      description = "If true, you can swap macchiato.css content with a Stylix-exported palette (edit below).";
     };
-
-    config = mkIf cfg.enable {
-         programs.waybar = {
-    enable = true;
-    style = /waybar-style.css;
-    settings = let
-      icons = {
-        # Font Awesome icons, comments are the official icon names
-        bat000 = "";  # battery-empty
-        bat025 = "";  # battery-quarter
-        bat050 = "";  # battery-half
-        bat075 = "";  # battery-three-quarters
-        bat100 = "";  # battery-full
-        batPlugged = "";  # plug
-        batPluggedFull = "";  # plug-circle-check
-        batCharging = "";  # plug-circle-bolt
-        bluetooth = "";  # bluetooth-b
-        playerPlaying = "";  # play
-        playerPaused = "";  # pause
-        playerStopped = "";  # stop
-        audioVolumeOff = ""; # volume-xmark
-        audioVolumeLow = "";  # volume-low
-        audioVolumeHigh = "";  # volume-high
-        audioHeadphones = ""; # headphones-simple
-        audioHeadset = "";  # headset
-        audioMic = "";  # microphone
-        audioMicOff = "";  # microphone-slash
-        network = "";  # network-wired
-        networkEthernet = "";  # ethernet
-        networkWifi = "";  # wifi
-        networkNone = "";  # square-xmark
-        mode = "";  # square-plus
-        presentationModeOff = "";  # eye-slash
-        presentationModeOn = "";  # eye
-        backlight = "";  # lightbulb
-        clock = "";  # clock
-        notificationsOn = "";  # bell
-        notificationsOff = "";  # bell-slash
-        editor = "";  # pen-to-square
-        browser = "";  # globe
-        firefox = "";  # firefox (firefox-browser doesn't work for some reason)
-        player = "";  # music
-        mail = "";  # envelope
-        messenger = "";  # paper-plane
-        terminal = "";  # terminal
-        pdf = "";  # file-pdf
-        image = "";  # image
-        powerLow = "";  # moon
-        powerMedium = "";  # diamond
-        powerHigh = "";  # rocket
-      };
-      modules = {
-        "sway/workspaces" = let
-          /*
-          - font size is 11pt, 75% of that is 8.25pt
-          - so 2.75pt gap, half of that is 1.375pt
-          - move up by that to center vertically
-          */
-          format = name: " <span size='75%' rise='1.375pt'>[${name}]</span>";
-        in {
-          disable-scroll = true;
-          format = "<b>{name}</b>{windows}";
-          format-window-separator = "";
-          window-rewrite-default = format "{name}";
-          window-rewrite = builtins.mapAttrs (_: value: format value) {
-            "title<(.* - )?(.*) - VSCodium>" = "${icons.editor} $2";  # only use workspace name
-            "title<VSCodium>" = "${icons.editor}";  # only use workspace name
-            "title<.* - Vivaldi" = "${icons.browser}";
-            "title<(.* — )?Mozilla Firefox>" = "${icons.firefox}";
-            "title<.*YouTube Music" = "${icons.player}";
-            "title<Element.*>" = "${icons.messenger}";
-            "title<.* - Mozilla Thunderbird" = "${icons.mail}";
-            "class<kitty> title<(.*)>" = "${icons.terminal} $1";
-            "class<org.pwmt.zathura>" = "${icons.pdf}";
-            "title<feh .*>" = "${icons.image}";
-          };
-          window-format = "this doesn't do anything but if it's not defined it doesn't work";
-        };
-
-        "sway/mode" = {
-          format = "${icons.mode} {}";
-          tooltip = false;
-        };
-
-        "mpris" = {
-          format = "{status_icon}  {title} ({artist})";
-          title-len = 16;
-          artist-len = 16;
-          status-icons = {
-            playing = icons.playerPlaying;
-            paused = icons.playerPaused;
-            stopped = icons.playerStopped;
-          };
-        };
-
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            deactivated = icons.presentationModeOff;
-            activated = icons.presentationModeOn;
-          };
-          tooltip-format-deactivated = "Presentation mode deactivated\nDevice will idle normally";
-          tooltip-format-activated = "Presentation mode activated\nDevice won't idle";
-        };
-
-        "custom/notifications" = {
-          exec = pkgs.writeShellScript "waybar-notifications" ''
-            mako_mode=$(makoctl mode)
-            if [[ "$mako_mode" == "default" ]]; then
-              echo '{ "text": "active", "alt": "activated", "class": "activated" }'
-            else
-              echo '{ "text": "muted", "alt": "deactivated", "class": "deactivated" }'
-            fi
-          '';
-          return-type = "json";
-          /*
-          `exec-on-event` doesn't seem to work: https://github.com/Alexays/Waybar/issues/2552
-
-          So instead we use a signal sent from the `on-click` script to update the module without
-          waiting for the next interval.
-          */
-          signal = 1;
-          interval = 30;
-          on-click = pkgs.writeShellScript "waybar-toggle-notifications" ''
-            makoctl mode -t do-not-disturb
-            pkill --signal SIGRTMIN+1 waybar
-          '';
-          format = "{icon}";
-          format-icons = {
-            activated = icons.notificationsOn;
-            deactivated = icons.notificationsOff;
-          };
-          tooltip-format = "Notifications {}";
-        };
-
-        "clock" = {
-          format = "${icons.clock} {:%Y-%m-%d %H:%M:%S}";
-          interval = 1;
-        };
-
-        "network" = {
-          format = "${icons.network} {ifname}";
-          format-ethernet = "${icons.networkEthernet} {ifname}";
-          format-wifi = "${icons.networkWifi} {essid} ({signalStrength}%)";
-          format-disconnected = "${icons.networkNone} Disconnected";
-          tooltip = false;
-        };
-
-        "bluetooth" = {
-          controller = networking.hostname;  # by default the controller alias is the hostname
-          format = "${icons.bluetooth} {status}";
-          format-on = "${icons.bluetooth} 0";
-          format-connected = "${icons.bluetooth} {num_connections}";
-          tooltip-format = "{controller_alias} ({controller_address})";
-          tooltip-format-connected = ''
-            {controller_alias} {status} ({controller_address})
-
-            Connections:
-            {device_enumerate}'';
-          tooltip-format-enumerate-connected = "{device_alias} ({device_address})";
-          on-click = "rofi-bluetooth";
-        };
-
-        "backlight" = {
-          format = "${icons.backlight} {percent}%";
-          tooltip = false;
-        };
-
-        "pulseaudio#out" = {
-          format = "{icon} {volume}%";
-          format-muted = "${icons.audioVolumeOff} {volume}%";
-          format-icons = {
-            default = [ icons.audioVolumeLow icons.audioVolumeHigh ];
-            headphone = icons.audioHeadphones;
-            headset = icons.audioHeadset;
-          };
-          on-click-right = "pavucontrol -t 3";  # opens output devices tab
-          on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-          on-scroll-up = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+";
-          on-scroll-down = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%-";
-          tooltip-format = "Device: {desc}";
-        };
-
-        "pulseaudio#in" = {
-          format = "{format_source}";
-          format-source = "${icons.audioMic} {volume}%";
-          format-source-muted = "${icons.audioMicOff} {volume}%";
-          on-click-right = "pavucontrol -t 4";  # opens input devices tab
-          on-click = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-          on-scroll-up = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SOURCE@ 1%+";
-          on-scroll-down = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SOURCE@ 1%-";
-          tooltip-format = "Device: {desc}";
-        };
-
-        "battery" = {
-          interval = 30;
-          format = "{icon} {capacity}%";
-          format-plugged = "${icons.batPlugged} {capacity}%";
-          format-full = "${icons.batPluggedFull} {capacity}%";
-          format-charging = "${icons.batCharging} {capacity}%";
-          format-icons = [ icons.bat000 icons.bat025 icons.bat050 icons.bat075 icons.bat100 ];
-          tooltip-format = "{timeTo}\nPower draw: {power} W\nHealth: {health} %\nCycles: {cycles}";
-          states.warning = 15;
-        };
-
-        "power-profiles-daemon" = {
-          format = "{icon}";
-          tooltip-format = "Profile: {profile}\nDriver: {driver}";
-          format-icons = {
-            performance = icons.powerHigh;
-            balanced = icons.powerMedium;
-            power-saver = icons.powerLow;
-          };
-        };
-      };
-    in [
-      (modules // {
-        layer = "top";
-        position = "top";
-        height = 26;
-
-        modules-left = [ "hypr/workspaces" "hypr/mode" ];
-        modules-right = [
-          "mpris"
-          "idle_inhibitor"
-          "custom/notifications"
-          "pulseaudio#out"
-          "pulseaudio#in"
-          "network"
-          "bluetooth"
-          "backlight"
-          "power-profiles-daemon"
-          "battery"
-          "clock"
-        ];
-      })
-    ];
+    stylixPaletteCss = mkOption {
+      type = types.str;
+      default = "/* Put Stylix-exported CSS palette here if you set useStylixPalette = true; */";
+      description = "Raw CSS with @define-color vars compatible with style.css import.";
+    };
   };
 
+  config = mkIf cfg.enable {
+    programs.waybar.enable = true;
 
+    # Déploie les 3 fichiers Waybar depuis ce Nix unique
+    xdg.configFile."waybar/config".text = jsoncConfig;
 
-        home.packages = with pkgs; [
-            jq
-            pango
-            cairo
-            gdk-pixbuf
-            noto-fonts
-            noto-fonts-emoji
-        ];
-    };
+    xdg.configFile."waybar/style.css".text = ''
+${cssStyle}
+
+/* Nix-driven tweaks */
+window#waybar { /* purely visual hint if you want */
+  /* layer: ${cfg.layer}; */
+}
+/* unify item height through line-height */
+* { line-height: ${toString cfg.height}px; }
+'';
+
+    xdg.configFile."waybar/macchiato.css".text =
+      (if cfg.useStylixPalette then cfg.stylixPaletteCss else cssPaletteMacchiato);
+
+    # Dépendances utiles
+    home.packages = with pkgs; [
+      jq pango cairo gdk-pixbuf
+      noto-fonts noto-fonts-emoji
+      playerctl pavucontrol iwgtk
+      # ajoute ici les outils appelés par les scripts custom si besoin
+    ];
+  };
 }
