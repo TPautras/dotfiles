@@ -3,6 +3,7 @@
     pkgs,
     lib,
     programs,
+    networking,
     ...
 }:
 with lib; let 
@@ -18,7 +19,7 @@ in {
     config = mkIf cfg.enable {
          programs.waybar = {
     enable = true;
-    style = res + /waybar-style.css;
+    style = /waybar-style.css;
     settings = let
       icons = {
         # Font Awesome icons, comments are the official icon names
@@ -163,7 +164,7 @@ in {
         };
 
         "bluetooth" = {
-          controller = config.home.hostname;  # by default the controller alias is the hostname
+          controller = networking.hostname;  # by default the controller alias is the hostname
           format = "${icons.bluetooth} {status}";
           format-on = "${icons.bluetooth} 0";
           format-connected = "${icons.bluetooth} {num_connections}";
@@ -231,13 +232,11 @@ in {
       };
     in [
       (modules // {
-        output = config.eisfunke.displays.main.id;
-
         layer = "top";
         position = "top";
         height = 26;
 
-        modules-left = [ "sway/workspaces" "sway/mode" ];
+        modules-left = [ "hypr/workspaces" "hypr/mode" ];
         modules-right = [
           "mpris"
           "idle_inhibitor"
@@ -251,17 +250,6 @@ in {
           "battery"
           "clock"
         ];
-      })
-
-      (modules // {
-        output = "!${config.eisfunke.displays.main.id}";
-
-        layer = "top";
-        position = "top";
-        height = 26;
-
-        modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-right = [ "clock" ];
       })
     ];
   };
