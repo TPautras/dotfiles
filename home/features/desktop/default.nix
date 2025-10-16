@@ -7,5 +7,6 @@
 {
     imports = [
         ./wayland
+        ./hyprland
     ];
 }
