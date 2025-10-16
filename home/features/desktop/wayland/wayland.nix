@@ -16,13 +16,7 @@ in {
     };
 
     config = mkIf cfg.enable {
-            programs.greetd.enable = true;
-            programs.greetd.defaultSession = "hyprland";
-            programs.greetd.wayland = true;
-            programs.greetd.autoLogin = true;
-            programs.greetd.waylandCompositor = "hyprland";
-            programs.greetd.waylandSession = "hyprland";
-            programs.wayland.enable = true;
+        programs.wayland.enable = true;
         home.packages = with pkgs; [
             grim
             hyprlock
