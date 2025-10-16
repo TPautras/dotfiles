@@ -21,19 +21,7 @@ in
             fira-code-symbols
             noto-fonts
             noto-fonts-emoji
-            ttf-jetbrains-mono
-            ttf-fira-code
-            ttf-iosevka
-            ttf-roboto
-            ttf-dejavu
-            ttf-liberation
-            ttf-ubuntu-font-family
-            wqy-microhei
-            wqy-zenhei
-            xorg.fonts.misc
-            xorg.fonts.cyrillic
-            xorg.fonts.type1
-            xorg.fonts.scaleable
+            nerd-fonts-jetbrains-mono
         ];
     };
 }
