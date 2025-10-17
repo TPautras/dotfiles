@@ -9,21 +9,6 @@
   # Hostname and network
   networking.hostName = "jade";
 
-  # Time zone and locale
-  time.timeZone = "Asia/Seoul";
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
-  };
-
   # --- Hyprland + Wayland setup ---
   programs.hyprland = {
     enable = true;
@@ -43,14 +28,6 @@
     };
   };
 
-  # Keyboard
-  services.xserver.xkb = {
-    layout = "us";
-  };
-
-  # Printing
-  services.printing.enable = true;
-
   # Users
   users.users.thomas = {
     shell = pkgs.fish;
@@ -68,6 +45,8 @@
     programs.enable = true;
     cachyos.enable = true;
     sound.enable = true;
+    locale = "fr-workstation";
+    printing.enable = true;
   };
 
   # Programs
