@@ -43,7 +43,7 @@
             inherit inputs outputs; 
             host = "jade";
           };
-          modules = [ ./home/thomas/jade.nix ];
+          modules = [ ./hosts/jade/home.nix ];
         };
       };
     };

@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, config, lib, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/system
   ];
 
   # Bootloader
@@ -11,7 +12,6 @@
 
   # Hostname and network
   networking.hostName = "jade";
-  networking.networkmanager.enable = true;
 
   # Time zone and locale
   time.timeZone = "Asia/Seoul";
@@ -83,6 +83,10 @@
     packages = with pkgs; [
       kdePackages.kate
     ];
+  };
+
+  config.sysConfig = {
+    networking.enable = true;
   };
 
   # Programs

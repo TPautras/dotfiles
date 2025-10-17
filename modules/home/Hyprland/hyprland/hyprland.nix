@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.features.desktop.hyprland;
+  cfg = config.userModules.desktop.hyprland;
 in {
-  options.features.desktop.hyprland.enable = mkEnableOption "hyprland config";
+  options.userModules.desktop.hyprland.enable = mkEnableOption "hyprland config";
 
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
