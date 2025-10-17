@@ -17,7 +17,6 @@ in {
         networking.firewall.enable = true;
         networking.firewall.allowedTCPPorts = [ 22 80 443 ];
         networking.firewall.allowedUDPPorts = [ 1194 ];
-        networking.useDHCP = true;
 
         services.avahi.enable = true;
 
