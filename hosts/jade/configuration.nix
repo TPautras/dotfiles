@@ -43,16 +43,6 @@
     };
   };
 
-  # Wayland utilities
-  environment.systemPackages = with pkgs; [
-    vim
-    discord
-    vscode
-    git
-    firefox
-    networkmanagerapplet
-  ];
-
   # Sound with PipeWire
   security.rtkit.enable = true;
   services.pipewire = {
@@ -83,6 +73,8 @@
 
   config.sysConfig = {
     networking.enable = true;
+    boot.enable = true;
+    programs.enable = true;
   };
 
   # Programs
