@@ -24,7 +24,7 @@
     networking.enable = true;
     boot.enable = true;
     programs.enable = true;
-    cachyos.enable = true;
+    cachyos.enable = false;
     sound.enable = true;
     locale = "fr-workstation";
     printing.enable = true;
