@@ -20,8 +20,6 @@ in {
         networking.useDHCP = true;
 
         services.avahi.enable = true;
-        services.avahi.publishSSH = true;
-        services.avahi.publishWorkstation = true;
 
         environment.systemPackages = with pkgs; [
             networkmanager
