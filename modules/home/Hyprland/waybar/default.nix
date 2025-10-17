@@ -1,4 +1,4 @@
-{ lib,... }:
+{ lib, config, ... }:
 with lib; let
   cfg = config.userModules.desktop.waybar;
 in
