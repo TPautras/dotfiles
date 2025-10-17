@@ -27,7 +27,6 @@ in {
             nmap
             wget
             curl
-            net-tools
             iputils
             dnsutils
             ethtool
