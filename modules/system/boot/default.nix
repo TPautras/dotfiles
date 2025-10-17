@@ -13,8 +13,15 @@ in {
     };
 
     config = mkIf cfg.enable {
-        # Bootloader
-        boot.loader.systemd-boot.enable = true;
-        boot.loader.efi.canTouchEfiVariables = true;
+        boot = {
+            bootspec.enable = true;
+            loader = {
+                systemd-boot.enable = true;
+                efi.canTouchEfiVariables = true;
+                systemd-boot.editor = false;
+            };
+            consoleLogLevel = 0;
+            initrd.verbose = false;
+        };
     };
 }
