@@ -7,12 +7,10 @@
 with lib; let 
     cfg = config.userModules.cli.fish;
 in {
-    options = {
-        userModules.cli.fish = {
+    options.userModules.cli.fish = {
             enable = mkEnableOption "Fish shell and related tools";
             description = ''Installs the Fish shell and related tools like Oh My Fish and Fisherman.'';
         };
-    };
 
     config = mkIf cfg.enable {
         programs.fish = {

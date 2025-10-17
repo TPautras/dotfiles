@@ -27,12 +27,16 @@
     };
 
     userModules = {
-        waybar = {
-            enable = true;
+        desktop = {
+            waybar = {
+                enable = true;
+            };
+            hyprland = {
+                enable = true;
+            };
         };
-        hyprland = {
-            enable = true;
-        };
+
+        cli.fish.enable = true;
     };
 
     programs.home-manager.enable = true;
