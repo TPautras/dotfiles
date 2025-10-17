@@ -71,7 +71,7 @@
     ];
   };
 
-  config.sysConfig = {
+  sysConfig = {
     networking.enable = true;
     boot.enable = true;
     programs.enable = true;
