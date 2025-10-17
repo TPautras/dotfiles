@@ -71,7 +71,7 @@
     ];
   };
 
-  sysConfig = {
+  sysModules = {
     networking.enable = true;
     boot.enable = true;
     programs.enable = true;
