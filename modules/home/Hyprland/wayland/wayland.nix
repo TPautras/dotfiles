@@ -6,10 +6,10 @@
     ...
 }:
 with lib; let
-    cfg = config.features.desktop.wayland;
+    cfg = config.userModules.desktop.wayland;
 in {
     options = {
-        features.desktop.wayland = {
+        userModules.desktop.wayland = {
             enable = mkEnableOption "Enable Wayland desktop environment with Hyprland";
             description = ''Sets up a Wayland desktop environment using Hyprland, greetd'';
         };

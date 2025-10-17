@@ -5,10 +5,10 @@
     ...
 }:
 with lib; let 
-    cfg = config.features.cli.fish;
+    cfg = config.userModules.cli.fish;
 in {
     options = {
-        features.cli.fish = {
+        userModules.cli.fish = {
             enable = mkEnableOption "Fish shell and related tools";
             description = ''Installs the Fish shell and related tools like Oh My Fish and Fisherman.'';
         };

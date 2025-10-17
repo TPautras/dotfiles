@@ -26,7 +26,7 @@
 
     };
 
-    config.userConfig = {
+    userModules = {
         waybar = {
             enable = true;
         };

@@ -5,10 +5,10 @@
     ...
 }:
 with lib; let
-    cfg = config.features.desktop.fonts;
+    cfg = config.userModules.desktop.fonts;
 in
 {
-    options.features.desktop.fonts = {
+    options.userModules.desktop.fonts = {
         enable = mkEnableOption "Enable default fonts";
         description = ''Installs some default fonts'';
     };
