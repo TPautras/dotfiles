@@ -9,25 +9,6 @@
   # Hostname and network
   networking.hostName = "jade";
 
-  # --- Hyprland + Wayland setup ---
-  programs.hyprland = {
-    enable = true;
-    # Pour utiliser la version de Hyprland fournie par NixOS
-    package = pkgs.hyprland;
-    xwayland.enable = true;
-  };
-
-  #Utilise greetd comme display manager (léger, compatible Wayland)
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "thomas";
-      };
-    };
-  };
-
   # Users
   users.users.thomas = {
     shell = pkgs.fish;
@@ -47,6 +28,7 @@
     sound.enable = true;
     locale = "fr-workstation";
     printing.enable = true;
+    hyprland.enable = true;
   };
 
   # Programs

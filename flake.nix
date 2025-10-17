@@ -12,9 +12,11 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, home-manager, nixpkgs, chaotic, ... }@inputs:
+  outputs = { self, home-manager, nixpkgs, chaotic, hyprland, ... }@inputs:
     let
       inherit (self) outputs;
       systems = [
