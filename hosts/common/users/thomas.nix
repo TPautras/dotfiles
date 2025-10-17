@@ -27,5 +27,5 @@
         packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
     };
     home-manager.users.thomas =
-        import ../${config.networking.hostName}/home.nix;
+        import ../../${config.networking.hostName}/home.nix;
 }
