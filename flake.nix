@@ -10,9 +10,11 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
-  outputs = { self, home-manager, nixpkgs, ... }@inputs:
+  outputs = { self, home-manager, nixpkgs, chaotic, ... }@inputs:
     let
       inherit (self) outputs;
       systems = [
@@ -33,7 +35,10 @@
             inherit inputs outputs;
             host ="jade"; 
           };
-          modules = [ ./hosts/jade ];
+          modules = [ 
+            ./hosts/jade 
+            chaotic.nixosModules.default
+          ];
         };
       };
       homeConfigurations = {

@@ -43,15 +43,6 @@
     };
   };
 
-  # Sound with PipeWire
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
   # Keyboard
   services.xserver.xkb = {
     layout = "us";
@@ -75,6 +66,8 @@
     networking.enable = true;
     boot.enable = true;
     programs.enable = true;
+    cachyos.enable = true;
+    sound.enable = true;
   };
 
   # Programs
