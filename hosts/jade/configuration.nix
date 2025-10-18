@@ -29,7 +29,6 @@
     locale = true;
     printing.enable = true;
     hyprland.enable = true;
-    hyprpanel.enable = true;
   };
 
   # Programs

@@ -5,9 +5,9 @@
     ...
 }:
 with lib; let
-    cfg = config.userModules.hyprpanel;
+    cfg = config.userModules.desktop.hyprpanel;
 in {
-    options.userModules.hyprpanel = {
+    options.userModules.desktop.hyprpanel = {
         enable = mkEnableOption "Enable default hyprpanel configuration";
         description = ''Sets up a default hyprpanel configuration for Hyprland'';
     };
