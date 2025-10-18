@@ -35,8 +35,6 @@
             hyprland = {
                 enable = true;
             };
-
-            hyprpanel.enable = true;
         };
 
         cli.fish.enable = true;
