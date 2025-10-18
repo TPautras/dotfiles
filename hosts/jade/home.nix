@@ -40,7 +40,5 @@
         cli.fish.enable = true;
     };
 
-    programs.hyprpanel.enable = true;
-
     programs.home-manager.enable = true;
 }
