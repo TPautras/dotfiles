@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
-
+let 
+    cfg = config.sysModules.locale;
+in 
 {
-  options.sysModules.locale = lib.mkOption {
+  options.sysModules.locale.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Active le fuseau horaire et les réglages de locale française sur un noyau anglais.";
