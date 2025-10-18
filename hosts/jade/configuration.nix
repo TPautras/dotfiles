@@ -26,7 +26,7 @@
     programs.enable = true;
     cachyos.enable = false;
     sound.enable = true;
-    locale = "fr-workstation";
+    locale = true;
     printing.enable = true;
     hyprland.enable = true;
     hyprpanel.enable = true;
