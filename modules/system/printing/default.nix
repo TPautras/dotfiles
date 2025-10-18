@@ -19,7 +19,6 @@ in
                     pkgs.cups-filters
                     pkgs.gutenprint
                     pkgs."sane-backends"
-                    pkgs.ippusbxd
                 ];
                 description = "Additional packages to install when printing is enabled.";
             };
