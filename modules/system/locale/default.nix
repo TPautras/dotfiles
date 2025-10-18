@@ -1,49 +1,66 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.sysModule.locale;
+  localeProfile = config.sysModule.locale;
 in
 {
   options.sysModule.locale = lib.mkOption {
     type = lib.types.enum [ "fr-workstation" "fr-server" "fr-minimal" ];
     default = "fr-workstation";
     description = ''
-      Profils préconfigurés de locale / clavier / fuseau horaire (centré France).
+      Profils préconfigurés de locale / clavier / fuseau horaire :
 
-      - fr-workstation : oriente desktop (X activé), français principal avec clavier US.  
-      - fr-server : mode serveur (pas d’interface), français principal avec clavier US.  
-      - fr-minimal : configuration minimale, français seulement avec clavier US.  
+      - fr-workstation : environnement graphique, français + clavier US  
+      - fr-server : mode serveur, sans interface graphique  
+      - fr-minimal : configuration minimale  
     '';
   };
 
-  config = lib.mkIf (cfg == "fr-workstation") {
-    i18n.defaultLocale = "fr_FR.UTF-8";
-    i18n.extraLocales = [ "en_US.UTF-8" ];   # installer cette locale additionnelle
-    # si tu veux régler certaines LC manuellement :
+  config = lib.recursiveUpdate (if localeProfile == "fr-workstation" then {
+    time.timeZone = "Asia/Seoul";
+    i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
-      LC_MESSAGES = "en_US.UTF-8";
-      # tu peux ajouter LC_TIME, LC_NUMERIC, etc. ici si besoin
+      LC_ADDRESS = "fr_FR.UTF-8";
+      LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_MEASUREMENT = "fr_FR.UTF-8";
+      LC_MONETARY = "fr_FR.UTF-8";
+      LC_NAME = "fr_FR.UTF-8";
+      LC_NUMERIC = "fr_FR.UTF-8";
+      LC_PAPER = "fr_FR.UTF-8";
+      LC_TELEPHONE = "fr_FR.UTF-8";
+      LC_TIME = "fr_FR.UTF-8";
     };
-    i18n.consoleKeymap = "us";
-    time.timeZone = "Asia/Seoul";
-
     services.xserver.enable = true;
-    services.xserver.layout = "us";
-  }
-  // lib.mkIf (cfg == "fr-server") {
-    i18n.defaultLocale = "fr_FR.UTF-8";
-    i18n.extraLocales = [ "en_US.UTF-8" ];
-    i18n.consoleKeymap = "us";
+    services.xserver.xkb = { layout = "us"; };
+  } else if localeProfile == "fr-server" then {
     time.timeZone = "Asia/Seoul";
-
+    i18n.defaultLocale = "en_US.UTF-8";
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = "fr_FR.UTF-8";
+      LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_MEASUREMENT = "fr_FR.UTF-8";
+      LC_MONETARY = "fr_FR.UTF-8";
+      LC_NAME = "fr_FR.UTF-8";
+      LC_NUMERIC = "fr_FR.UTF-8";
+      LC_PAPER = "fr_FR.UTF-8";
+      LC_TELEPHONE = "fr_FR.UTF-8";
+      LC_TIME = "fr_FR.UTF-8";
+    };
     services.xserver.enable = false;
-  }
-  // lib.mkIf (cfg == "fr-minimal") {
-    i18n.defaultLocale = "fr_FR.UTF-8";
-    i18n.extraLocales = [];  # pas de locale additionnelle
-    i18n.consoleKeymap = "us";
+  } else {
+    # fr-minimal
     time.timeZone = "Asia/Seoul";
-
-    # pas de X, etc.
-  };
+    i18n.defaultLocale = "en_US.UTF-8";
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = "fr_FR.UTF-8";
+      LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_MEASUREMENT = "fr_FR.UTF-8";
+      LC_MONETARY = "fr_FR.UTF-8";
+      LC_NAME = "fr_FR.UTF-8";
+      LC_NUMERIC = "fr_FR.UTF-UTF-8";  # correction à “fr_FR.UTF-8”
+      LC_PAPER = "fr_FR.UTF-8";
+      LC_TELEPHONE = "fr_FR.UTF-8";
+      LC_TIME = "fr_FR.UTF-8";
+    };
+  }) config;
 }
