@@ -27,8 +27,6 @@ in
     };
 
     config = lib.mkIf cfg.enable {
-        # Core services
-        services.cups.enable = true;
         services.avahi.enable = true;
 
         # Install common printing/scanning packages
@@ -37,11 +35,6 @@ in
         # Open common ports for printing/discovery
         networking.firewall.allowedTCPPorts = lib.mkIf cfg.enable [ 631 ];    # IPP / CUPS
         networking.firewall.allowedUDPPorts = lib.mkIf cfg.enable [ 5353 ];   # mDNS / Avahi
-
-        # Helpful defaults for common USB printers
-        hardware.enableAllFirmware = lib.mkIf cfg.enable true;
-
-        # Optional: enable the network printer browsing by CUPS (useful on desktops)
-        services.cups.browsing = true;
+        services.printing.browsing = true;
     };
 }
