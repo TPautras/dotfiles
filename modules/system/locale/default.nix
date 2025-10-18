@@ -9,7 +9,7 @@ in
     description = "Active le fuseau horaire et les réglages de locale française sur un noyau anglais.";
   };
 
-    config = lib.mkIf config.sysModules.locale {
+    config = lib.mkIf cfg.enable {
         time.timeZone = "Asia/Seoul";
 
     i18n.defaultLocale = "en_US.UTF-8";
