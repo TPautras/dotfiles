@@ -1,13 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.sysModule.locale = lib.mkOption {
+  options.sysModules.locale = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Active le fuseau horaire et les réglages de locale française sur un noyau anglais.";
   };
 
-    config = lib.mkIf config.sysModule.locale {
+    config = lib.mkIf config.sysModules.locale {
         time.timeZone = "Asia/Seoul";
 
     i18n.defaultLocale = "en_US.UTF-8";
