@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 
 let
-    cfg = config.sysModule.printing;
+    cfg = config.sysModules.printing;
 in
 {
     options = {
-        sysModule.printing = {
+        sysModules.printing = {
             enable = lib.mkOption {
                 type = lib.types.bool;
                 default = false;
