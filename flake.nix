@@ -44,7 +44,6 @@
           modules = [ 
             ./hosts/jade 
             chaotic.nixosModules.default
-            hyprpanel.homeManagerModules.hyprpanel
           ];
         };
       };
@@ -55,7 +54,10 @@
             inherit inputs outputs; 
             host = "jade";
           };
-          modules = [ ./hosts/jade/home.nix ];
+          modules = [ 
+            ./hosts/jade/home.nix 
+            hyprpanel.homeManagerModules.hyprpanel
+          ];
         };
       };
     };
