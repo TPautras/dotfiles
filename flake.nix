@@ -14,13 +14,9 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     hyprland.url = "github:hyprwm/Hyprland";
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, home-manager, nixpkgs, chaotic, hyprland, hyprpanel, ... }@inputs:
+  outputs = { self, home-manager, nixpkgs, chaotic, hyprland, ... }@inputs:
     let
       inherit (self) outputs;
       systems = [
@@ -56,7 +52,6 @@
           };
           modules = [ 
             ./hosts/jade/home.nix 
-            hyprpanel.homeManagerModules.hyprpanel
           ];
         };
       };
