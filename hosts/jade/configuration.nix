@@ -26,7 +26,7 @@
     programs.enable = true;
     cachyos.enable = false;
     sound.enable = true;
-    locale = true;
+    locale.enable = true;
     printing.enable = true;
     hyprland.enable = true;
   };
