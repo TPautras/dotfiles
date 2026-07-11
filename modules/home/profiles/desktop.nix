@@ -15,9 +15,11 @@
       self.homeManagerModules.cursor
       self.homeManagerModules.obsidian
       self.homeManagerModules.aiTools
+      self.homeManagerModules.fetch
     ];
 
     hm = {
+      fetch.enable = true;
       fonts.enable    = true;
       hyprland.enable = true;
       hyprlandPlugins.enable = false;
