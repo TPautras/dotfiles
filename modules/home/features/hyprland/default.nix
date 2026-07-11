@@ -22,6 +22,7 @@
           exec-once = [
             "waybar"
             "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+            "hyprsunset"
           ];
 
           general = {
@@ -162,8 +163,25 @@
         };
       };
 
-      services.redshift = {
+      services.hyprsunset = {
         enable = true;
+        package = pkgs.hyprsunset;
+        transitions = {
+          sunrise = {
+            calendar = "*-*-* 05:00:00";
+            requests = [
+              [ "temperature" "6500" ]
+              [ "gamma 100" ]
+            ];
+          };
+          sunset = {
+            calendar = "*-*-* 19:00:00";
+            requests = [
+              [ "temperature" "3500" ]
+              [ "gamma 50" ]
+            ];
+          };
+        };
       };
 
       home.packages = with pkgs; [
