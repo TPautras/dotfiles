@@ -10,9 +10,11 @@
       self.nixosModules.stylix
       self.nixosModules.docker
       self.nixosModules.zen-browser
+      self.nixosModules.zsa
     ];
 
     sys = {
+      zsa.enable = true;
       sound.enable    = true;
       printing.enable = true;
       hyprland = {
