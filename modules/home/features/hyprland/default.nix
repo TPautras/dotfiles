@@ -162,6 +162,10 @@
         };
       };
 
+      services.redshift = {
+        enable = true;
+      };
+
       home.packages = with pkgs; [
         grim
         slurp
