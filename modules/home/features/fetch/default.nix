@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-  flake.homeManagerModules.fetch = { config, pkgs, lib, ... }:
+  flake.homeManagerModules.fetch = { config, pkgs, lib, inputs, ... }:
   with lib; let
     cfg = config.hm.fetch;
   in {
