@@ -1,0 +1,4 @@
+# Ces fichiers sont exécutés/consommés sur le serveur Linux (Ubuntu).
+# Forcer les fins de ligne LF, même si édités depuis Windows : un '\r' dans un
+# script bash casse le shebang.
+* text eol=lf

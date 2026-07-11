@@ -1,0 +1,55 @@
+format = "$directory$git_branch$git_status$python$lua$c$cmd_duration$line_break$character"
+
+palette = "everforest"
+
+[palettes.everforest]
+green  = "#a7c080"
+aqua   = "#83c092"
+blue   = "#7fbbb3"
+purple = "#d699b6"
+yellow = "#dbbc7f"
+orange = "#e69875"
+red    = "#e67e80"
+gray   = "#859289"
+fg     = "#d3c6aa"
+bg2    = "#3d484d"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol   = "[❯](bold red)"
+
+[directory]
+style             = "bold aqua"
+truncation_length = 3
+truncate_to_repo  = true
+read_only         = " 󰌾"
+
+[git_branch]
+symbol = " "
+style  = "bold purple"
+
+[git_status]
+style     = "bold red"
+ahead     = "⇡$count"
+behind    = "⇣$count"
+diverged  = "⇕⇡$ahead_count⇣$behind_count"
+modified  = "!$count"
+untracked = "?$count"
+staged    = "+$count"
+
+[python]
+symbol = " "
+style  = "bold yellow"
+
+[lua]
+symbol = " "
+style  = "bold blue"
+
+[c]
+symbol = " "
+style  = "bold blue"
+
+[cmd_duration]
+min_time = 2000
+style    = "bold yellow"
+format   = "[ $duration]($style) "

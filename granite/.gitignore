@@ -1,0 +1,6 @@
+# Secrets réels — ne jamais committer.
+# Seuls les *.example sont versionnés.
+.env
+**/.env
+*.env
+!*.env.example
