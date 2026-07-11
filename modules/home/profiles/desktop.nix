@@ -22,7 +22,7 @@
       fetch.enable = true;
       fonts.enable    = true;
       hyprland.enable = true;
-      hyprlandPlugins.enable = false;
+      hyprlandPlugins.enable = true;
       waybar.enable   = true;
       rofi.enable     = true;
       swaync.enable   = true;
