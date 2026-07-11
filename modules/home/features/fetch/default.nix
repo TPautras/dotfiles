@@ -10,8 +10,8 @@
     config = mkIf cfg.enable {
       programs.fetch = {
         enable = true;
-        labelColor = "red";
-        info = [ "os" "host" "kernel" "uptime" ];
+        labelColor = "green";
+        info = [ "os" "kernel" "wm" "shell" "display" "terminal" "font" "cpu" "gpu" "memory" ];
         speed = 1.0;
         spin = "xy";
       };
