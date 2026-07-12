@@ -164,23 +164,23 @@
       };
 
       services.hyprsunset = {
-        enable = true;
+        enable  = true;
         package = pkgs.hyprsunset;
-        transitions = {
-          sunrise = {
-            calendar = "*-*-* 05:00:00";
-            requests = [
-              [ "temperature" "6500" ]
-              [ "gamma 100" ]
-            ];
-          };
-          sunset = {
-            calendar = "*-*-* 19:00:00";
-            requests = [
-              [ "temperature" "3500" ]
-              [ "gamma 50" ]
-            ];
-          };
+        # Native profile-based config: hyprsunset watches the clock itself, so
+        # it needs no hyprctl/systemd timers and works with hyprland package = null.
+        settings = {
+          profile = [
+            {
+              time        = "5:00";
+              temperature = 6500;
+              gamma       = 1.0;
+            }
+            {
+              time        = "19:00";
+              temperature = 3500;
+              gamma       = 0.5;
+            }
+          ];
         };
       };
 
