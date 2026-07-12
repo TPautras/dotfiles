@@ -226,18 +226,18 @@
             dy *= dy;
 
             tc.x -= 0.5;
-            tc.x *= 1.0 + (dy * 0.02);
+            tc.x *= 1.0 + (dy * 0.6);
             tc.x += 0.5;
 
             tc.y -= 0.5;
-            tc.y *= 1.0 + (dx * 0.02);
+            tc.y *= 1.0 + (dx * 0.6);
             tc.y += 0.5;
 
-            // Add RGB offset for retro color separation effect
-            // (kept small: large offsets fringe selected/high-contrast areas)
-            vec2 r_tc = tc + vec2(0.0004, 0.0);
+            // No RGB channel split: it fringed selected / high-contrast areas
+            // into colored lines. Sample every channel at the same coord.
+            vec2 r_tc = tc;
             vec2 g_tc = tc;
-            vec2 b_tc = tc - vec2(0.0004, 0.0);
+            vec2 b_tc = tc;
 
             vec4 color;
             color.r = texture(tex, r_tc).r;
@@ -245,9 +245,9 @@
             color.b = texture(tex, b_tc).b;
             color.a = 1.0;
 
-            // Add scanlines (softened to avoid moiré / colored banding)
-            float scanline = sin(tc.y * 1500.0) * 0.02;
-            color.rgb += scanline;
+            // Scanlines aligned to physical pixels (no moiré / colored banding):
+            // darken every other row.
+            if (mod(gl_FragCoord.y, 2.0) < 1.0) color.rgb *= 0.88;
 
             // Add noise
             float noise = (fract(sin(dot(tc.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.02;

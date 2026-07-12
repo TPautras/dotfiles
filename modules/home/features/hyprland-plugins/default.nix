@@ -18,32 +18,20 @@
         # hyprspace: workspaces overview, toggled on Super + ;
         settings.bind = [ "$mod, semicolon, overview:toggle" ];
 
+        # Minimal config: only behaviour + colors. Geometry (panel height,
+        # margins, the active-workspace preview) is left to hyprspace defaults —
+        # overriding it was what collapsed the active preview to a thin line.
         settings.plugin.overview = {
           # Panel at the bottom so it no longer covers the top of the windows.
-          onBottom             = true;
-          centerAligned        = true;
+          onBottom           = true;
+          centerAligned      = true;
 
-          # hyprspace is a single horizontal row by design; show empty/new
-          # workspaces so the whole row appears, not just the active one.
-          showEmptyWorkspace   = true;
-          showNewWorkspace     = true;
+          # Show the whole row, not just the active workspace.
+          showEmptyWorkspace = true;
+          showNewWorkspace   = true;
 
-          # Render the active workspace as a normal thumbnail like the others.
-          # `true` draws it "as-is" (live) and renders broken (thin line) here.
-          drawActiveWorkspace  = false;
-
-          # Cleaner overview: drop top layers (waybar, etc.) while it's open.
-          hideTopLayers        = true;
-          hideBackgroundLayers = false;
-
-          exitOnClick          = true;
-          switchOnDrop         = true;
-          autoScroll           = true;
-
-          panelHeight          = 180;
-          workspaceMargin      = 12;
-          workspaceBorderSize  = 2;
-          panelBorderWidth     = 2;
+          exitOnClick        = true;
+          switchOnDrop       = true;
 
           panelColor              = "rgb(${hex ef.bg})";
           workspaceActiveBorder   = "rgb(${hex ef.green})";
