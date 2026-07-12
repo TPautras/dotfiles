@@ -226,17 +226,18 @@
             dy *= dy;
 
             tc.x -= 0.5;
-            tc.x *= 1.0 + (dy * 0.03);
+            tc.x *= 1.0 + (dy * 0.02);
             tc.x += 0.5;
 
             tc.y -= 0.5;
-            tc.y *= 1.0 + (dx * 0.03);
+            tc.y *= 1.0 + (dx * 0.02);
             tc.y += 0.5;
 
             // Add RGB offset for retro color separation effect
-            vec2 r_tc = tc + vec2(0.001, 0.0);
+            // (kept small: large offsets fringe selected/high-contrast areas)
+            vec2 r_tc = tc + vec2(0.0004, 0.0);
             vec2 g_tc = tc;
-            vec2 b_tc = tc - vec2(0.001, 0.0);
+            vec2 b_tc = tc - vec2(0.0004, 0.0);
 
             vec4 color;
             color.r = texture(tex, r_tc).r;
@@ -244,12 +245,12 @@
             color.b = texture(tex, b_tc).b;
             color.a = 1.0;
 
-            // Add scanlines
-            float scanline = sin(tc.y * 1500.0) * 0.05;
+            // Add scanlines (softened to avoid moiré / colored banding)
+            float scanline = sin(tc.y * 1500.0) * 0.02;
             color.rgb += scanline;
 
             // Add noise
-            float noise = (fract(sin(dot(tc.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.04;
+            float noise = (fract(sin(dot(tc.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.02;
             color.rgb += noise;
 
             // Apply vignette effect

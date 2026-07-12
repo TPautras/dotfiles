@@ -27,7 +27,10 @@
           # workspaces so the whole row appears, not just the active one.
           showEmptyWorkspace   = true;
           showNewWorkspace     = true;
-          drawActiveWorkspace  = true;
+
+          # Render the active workspace as a normal thumbnail like the others.
+          # `true` draws it "as-is" (live) and renders broken (thin line) here.
+          drawActiveWorkspace  = false;
 
           # Cleaner overview: drop top layers (waybar, etc.) while it's open.
           hideTopLayers        = true;
