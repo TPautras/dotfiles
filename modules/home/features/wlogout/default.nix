@@ -14,7 +14,7 @@
         layout = [
           {
             label   = "lock";
-            action  = "hyprlock";
+            action  = "lockscreen";
             text    = "Verrouiller";
             keybind = "l";
           }

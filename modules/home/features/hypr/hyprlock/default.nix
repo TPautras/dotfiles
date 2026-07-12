@@ -5,17 +5,31 @@
     ef  = self.lib.palette;
     hex = c: removePrefix "#" c;
 
-    wallpaper = ../../../../wallpapers/waterfall_1.png;
+    wallpaper = ../../../../../wallpapers/waterfall_1.png;
+    link      = "${config.home.homeDirectory}/.cache/wallpaper/current";
 
     date  = "${pkgs.coreutils}/bin/date";
     curl  = "${pkgs.curl}/bin/curl";
     tr    = "${pkgs.coreutils}/bin/tr";
 
     font = "FiraCode Nerd Font";
+
+    lockscreen = pkgs.writeShellScriptBin "lockscreen" ''
+      link="${link}"
+      mkdir -p "$(dirname "$link")"
+      wp=$(${pkgs.hyprland}/bin/hyprctl hyprpaper listactive 2>/dev/null | ${pkgs.gnugrep}/bin/grep -m1 '=' | ${pkgs.gnused}/bin/sed 's/.*= //')
+      if [ -z "$wp" ] || [ ! -e "$wp" ]; then
+        wp="${wallpaper}"
+      fi
+      ln -sfn "$wp" "$link"
+      exec hyprlock "$@"
+    '';
   in {
     options.hm.hyprlock.enable = mkEnableOption "Hyprlock lockscreen (Everforest)";
 
     config = mkIf cfg.enable {
+      home.packages = [ lockscreen ];
+
       programs.hyprlock = {
         enable   = true;
         settings = {
@@ -36,7 +50,7 @@
 
           background = [{
             monitor           = "";
-            path              = "${wallpaper}";
+            path              = "${link}";
             color             = "rgb(${hex ef.bg})";
             blur_size         = 4;
             blur_passes       = 3;

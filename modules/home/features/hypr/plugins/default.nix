@@ -5,28 +5,18 @@
     ef  = self.lib.palette;
     hex = c: removePrefix "#" c;
   in {
-    options.hm.hyprlandPlugins.enable =
-      mkEnableOption "Hyprland plugins from nixpkgs (hyprspace overview) — no source build, must match the running nixpkgs Hyprland";
+    options.hm.hyprlandPlugins.enable = mkEnableOption "Hyprland plugins from nixpkgs (hyprspace overview)";
 
     config = mkIf cfg.enable {
       wayland.windowManager.hyprland = {
-        # From nixpkgs so everything comes prebuilt from cache.nixos.org.
-        # Both the compositor (programs.hyprland) and this plugin resolve to the
-        # same nixpkgs, so their ABI matches with no override needed.
         plugins = [ pkgs.hyprlandPlugins.hyprspace ];
 
-        # hyprspace: workspaces overview, toggled on Super + ;
         settings.bind = [ "$mod, semicolon, overview:toggle" ];
 
-        # Minimal config: only behaviour + colors. Geometry (panel height,
-        # margins, the active-workspace preview) is left to hyprspace defaults —
-        # overriding it was what collapsed the active preview to a thin line.
         settings.plugin.overview = {
-          # Panel at the top, workspaces centered horizontally.
           onBottom           = false;
           centerAligned      = true;
 
-          # Show the whole row, not just the active workspace.
           showEmptyWorkspace = true;
           showNewWorkspace   = true;
 

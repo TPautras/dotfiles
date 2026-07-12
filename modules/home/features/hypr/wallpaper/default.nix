@@ -3,7 +3,8 @@
   with lib; let
     cfg  = config.hm.wallpaper;
     walt = inputs.walt.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    wallpaper = ../../../../wallpapers/waterfall_1.png;
+    wallpaper = ../../../../../wallpapers/waterfall_1.png;
+    link = "${config.home.homeDirectory}/.cache/wallpaper/current";
 
     setWallpaper = pkgs.writeShellScript "set-wallpaper" ''
       for _ in $(seq 1 40); do
@@ -50,9 +51,11 @@
       home.activation.setupWallpapers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         WDIR="$HOME/Pictures/wallpapers"
         mkdir -p "$WDIR"
-        ${pkgs.findutils}/bin/find ${../../../../wallpapers} -maxdepth 1 -type f \
+        ${pkgs.findutils}/bin/find ${../../../../../wallpapers} -maxdepth 1 -type f \
           \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) \
           -exec ${pkgs.coreutils}/bin/cp -n {} "$WDIR/" \;
+        mkdir -p "$(dirname "${link}")"
+        [ -L "${link}" ] || ln -sfn ${wallpaper} "${link}"
       '';
     };
   };

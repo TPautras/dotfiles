@@ -31,10 +31,6 @@
         wlr-randr
       ];
 
-      # Plugins are managed declaratively in home-manager
-      # (modules/home/features/hyprland-plugins) so they share the exact same
-      # nixpkgs/Hyprland ABI as the compositor enabled here.
-
       security.pam.services.hyprlock = {};
       security.polkit.enable    = true;
       services.dbus.enable      = true;
