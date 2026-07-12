@@ -39,6 +39,21 @@
     };
 
     areofyl-fetch.url = "github:areofyl/fetch";
+
+    # Hyprland from the flake so plugins can be built against the exact same
+    # source (ABI match). nixpkgs is intentionally NOT followed here, so we keep
+    # hyprland's own cachix binary cache instead of rebuilding from source.
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hypr-dynamic-cursors = {
+      url = "github:VirtCode/hypr-dynamic-cursors";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake

@@ -13,7 +13,20 @@
     };
 
     config = mkIf cfg.enable {
-      programs.hyprland.enable = true;
+      programs.hyprland = {
+        enable = true;
+        # Run the flake's Hyprland so the flake-built plugins (hyprspace,
+        # hypr-dynamic-cursors) match its ABI exactly.
+        package       = inputs.hyprland.packages.${pkgs.system}.hyprland;
+        portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      };
+
+      # Hyprland's binary cache — avoids compiling Hyprland from source.
+      # extra-* appends to the defaults instead of replacing cache.nixos.org.
+      nix.settings = {
+        extra-substituters        = [ "https://hyprland.cachix.org" ];
+        extra-trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      };
 
       xdg.portal = {
         enable       = true;

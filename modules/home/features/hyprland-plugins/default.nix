@@ -1,20 +1,20 @@
 { self, inputs, ... }: {
   flake.homeManagerModules.hyprlandPlugins = { config, pkgs, lib, ... }:
   with lib; let
-    cfg = config.hm.hyprlandPlugins;
+    cfg    = config.hm.hyprlandPlugins;
+    system = pkgs.stdenv.hostPlatform.system;
   in {
     options.hm.hyprlandPlugins.enable =
-      mkEnableOption "Hyprland plugins (hyprspace overview, dynamic cursors) — built from nixpkgs to match the running Hyprland ABI";
+      mkEnableOption "Hyprland plugins (hyprspace overview, dynamic cursors) — built from the hyprland flake input so they match the running Hyprland ABI";
 
     config = mkIf cfg.enable {
       wayland.windowManager.hyprland = {
-        # Plugins MUST come from the same nixpkgs as the running Hyprland
-        # (useGlobalPkgs = true guarantees this) or they fail to load with an
-        # ABI/version mismatch. hyprexpo is NOT in nixpkgs; hyprspace is the
-        # in-tree workspaces-overview equivalent.
-        plugins = with pkgs.hyprlandPlugins; [
-          hyprspace
-          hypr-dynamic-cursors
+        # Both plugins follow the `hyprland` flake input (see flake.nix), so
+        # their headers match the compositor set in the system module — no
+        # version mismatch, the dispatchers register.
+        plugins = [
+          inputs.hyprspace.packages.${system}.Hyprspace
+          inputs.hypr-dynamic-cursors.packages.${system}.hypr-dynamic-cursors
         ];
 
         settings = {
