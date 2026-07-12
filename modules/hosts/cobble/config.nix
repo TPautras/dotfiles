@@ -3,7 +3,7 @@
     networking.hostName = "cobble";
 
     sys = {
-      locale.timezone  = "Asia/Seoul";
+      locale.timezone  = "Europe/Paris";
       kernel.variant   = "zen";
       tailscale.enable = true;
     };
