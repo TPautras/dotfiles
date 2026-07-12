@@ -134,7 +134,7 @@
 
             "$mod CTRL, space, exec, kitty --class walt -e walt"
 
-            "$mod SHIFT, R, exec, hyprshade toggle crt"
+            "$mod SHIFT, R, exec, toggle-retro-shader"
           ];
 
           bindm = [
@@ -190,62 +190,90 @@
         grim
         slurp
         wl-clipboard
-        hyprshade   # screen-shader manager (prebuilt in nixpkgs, no source build)
+
+        # Toggle the retro CRT shader on/off ($mod SHIFT R). Direct hyprctl,
+        # no extra tooling; decoration:screen_shader is the current keyword.
+        (writeShellScriptBin "toggle-retro-shader" ''
+          shader="$HOME/.config/hypr/shaders/retro.frag"
+          if hyprctl getoption decoration:screen_shader -j | grep -q "retro.frag"; then
+            hyprctl keyword decoration:screen_shader "[[EMPTY]]"
+          else
+            hyprctl keyword decoration:screen_shader "$shader"
+          fi
+        '')
       ];
 
-      # Retro CRT screen shader. hyprshade looks for shaders in this dir, so
-      # `hyprshade toggle crt` (bound to $mod SHIFT R) flips it on/off.
-      xdg.configFile."hypr/shaders/crt.frag".text = ''
-        // Retro CRT screen shader for Hyprland
-        // Barrel curvature + scanlines + aperture mask + chromatic aberration + vignette
-        precision highp float;
+      # Retro CRT screen shader (github.com/DemonKingSwarn/retro-hyprland,
+      # retro.frag). GLSL ES 3.0 — the format current Hyprland expects.
+      xdg.configFile."hypr/shaders/retro.frag".text = ''
+        #version 300 es
+        precision mediump float;
 
-        varying vec2 v_texcoord;
+        in vec2 v_texcoord;
         uniform sampler2D tex;
-
-        const float SCANLINE   = 0.20;   // scanline darkness (0 = off)
-        const float ABERRATION = 0.0012; // chromatic aberration offset
-        const float VIGNETTE   = 0.25;   // edge darkening
-
-        // Classic CRT barrel distortion
-        vec2 curve(vec2 uv) {
-            uv = (uv - 0.5) * 2.0;
-            uv *= 1.06;
-            uv.x *= 1.0 + pow(abs(uv.y) / 5.0, 2.0);
-            uv.y *= 1.0 + pow(abs(uv.x) / 4.0, 2.0);
-            return uv * 0.5 + 0.5;
-        }
+        uniform float time;
+        out vec4 fragColor;
 
         void main() {
-            vec2 uv = curve(v_texcoord);
+            vec2 tc = vec2(v_texcoord.x, v_texcoord.y);
 
-            // Outside the curved screen -> black bezel
-            if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) {
-                gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
-                return;
-            }
+            // Distance from the center
+            float dx = abs(0.5 - tc.x);
+            float dy = abs(0.5 - tc.y);
 
-            // Chromatic aberration: split the RGB channels slightly
-            float r = texture2D(tex, uv + vec2(ABERRATION, 0.0)).r;
-            float g = texture2D(tex, uv).g;
-            float b = texture2D(tex, uv - vec2(ABERRATION, 0.0)).b;
-            vec3 col = vec3(r, g, b);
+            // Square it to smooth the edges
+            dx *= dx;
+            dy *= dy;
 
-            // Scanlines (every other physical pixel)
-            if (mod(gl_FragCoord.y, 2.0) < 1.0) col *= 1.0 - SCANLINE;
+            tc.x -= 0.5;
+            tc.x *= 1.0 + (dy * 0.03);
+            tc.x += 0.5;
 
-            // Subtle RGB aperture mask (per-column tint)
-            float m = mod(gl_FragCoord.x, 3.0);
-            vec3 mask = m < 1.0 ? vec3(1.05, 0.95, 0.95)
-                      : m < 2.0 ? vec3(0.95, 1.05, 0.95)
-                                : vec3(0.95, 0.95, 1.05);
-            col *= mask;
+            tc.y -= 0.5;
+            tc.y *= 1.0 + (dx * 0.03);
+            tc.y += 0.5;
 
-            // Vignette
-            vec2 vc = v_texcoord - 0.5;
-            col *= 1.0 - dot(vc, vc) * VIGNETTE * 2.0;
+            // Add RGB offset for retro color separation effect
+            vec2 r_tc = tc + vec2(0.001, 0.0);
+            vec2 g_tc = tc;
+            vec2 b_tc = tc - vec2(0.001, 0.0);
 
-            gl_FragColor = vec4(col, 1.0);
+            vec4 color;
+            color.r = texture(tex, r_tc).r;
+            color.g = texture(tex, g_tc).g;
+            color.b = texture(tex, b_tc).b;
+            color.a = 1.0;
+
+            // Add scanlines
+            float scanline = sin(tc.y * 1500.0) * 0.05;
+            color.rgb += scanline;
+
+            // Add noise
+            float noise = (fract(sin(dot(tc.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.04;
+            color.rgb += noise;
+
+            // Apply vignette effect
+            float vignette = smoothstep(0.8, 0.2, dx + dy);
+            color.rgb *= vignette;
+
+            // Vertical CRT lines with reduced intensity
+            float lines = sin(tc.y * 40.0) * 0.02;
+            color.rgb *= 1.0 - lines;
+
+            // Apply retro orange color transformation
+            vec3 retroColor = vec3(
+                color.r * 1.2,
+                color.g * 1.0,
+                color.b * 0.8
+            );
+            color.rgb = retroColor;
+
+            // Cutoff
+            if (tc.y > 1.0 || tc.x < 0.0 || tc.x > 1.0 || tc.y < 0.0)
+                color = vec4(0.0);
+
+            // Apply
+            fragColor = color;
         }
       '';
     };
