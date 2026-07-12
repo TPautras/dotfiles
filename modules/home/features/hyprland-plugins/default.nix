@@ -22,8 +22,8 @@
         # margins, the active-workspace preview) is left to hyprspace defaults —
         # overriding it was what collapsed the active preview to a thin line.
         settings.plugin.overview = {
-          # Panel at the bottom so it no longer covers the top of the windows.
-          onBottom           = true;
+          # Panel at the top, workspaces centered horizontally.
+          onBottom           = false;
           centerAligned      = true;
 
           # Show the whole row, not just the active workspace.

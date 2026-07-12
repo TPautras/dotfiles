@@ -226,11 +226,11 @@
             dy *= dy;
 
             tc.x -= 0.5;
-            tc.x *= 1.0 + (dy * 0.6);
+            tc.x *= 1.0 + (dy * 0.2);
             tc.x += 0.5;
 
             tc.y -= 0.5;
-            tc.y *= 1.0 + (dx * 0.6);
+            tc.y *= 1.0 + (dx * 0.2);
             tc.y += 0.5;
 
             // No RGB channel split: it fringed selected / high-contrast areas
