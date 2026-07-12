@@ -39,18 +39,6 @@
     };
 
     areofyl-fetch.url = "github:areofyl/fetch";
-
-    # Hyprland from the flake so plugins can be built against the exact same
-    # source (ABI match). nixpkgs is intentionally NOT followed here, so we keep
-    # hyprland's own cachix binary cache instead of rebuilding from source.
-    # Pinned to v0.55.0: the version Hyprspace is locked/tested against. Bumping
-    # requires Hyprspace to support the newer release (it lags Hyprland main).
-    hyprland.url = "github:hyprwm/Hyprland/v0.55.0";
-
-    hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake

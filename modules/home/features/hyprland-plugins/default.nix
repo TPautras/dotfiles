@@ -1,20 +1,17 @@
 { self, inputs, ... }: {
   flake.homeManagerModules.hyprlandPlugins = { config, pkgs, lib, ... }:
   with lib; let
-    cfg    = config.hm.hyprlandPlugins;
-    system = pkgs.stdenv.hostPlatform.system;
+    cfg = config.hm.hyprlandPlugins;
   in {
     options.hm.hyprlandPlugins.enable =
-      mkEnableOption "Hyprland plugins (hyprspace overview) — built from the hyprland flake input so it matches the running Hyprland ABI";
+      mkEnableOption "Hyprland plugins from nixpkgs (hyprspace overview) — no source build, must match the running nixpkgs Hyprland";
 
     config = mkIf cfg.enable {
       wayland.windowManager.hyprland = {
-        # hyprspace follows the `hyprland` flake input (see flake.nix), so its
-        # headers match the compositor set in the system module — no version
-        # mismatch, the dispatcher registers.
-        plugins = [
-          inputs.hyprspace.packages.${system}.Hyprspace
-        ];
+        # From nixpkgs so everything comes prebuilt from cache.nixos.org.
+        # Both the compositor (programs.hyprland) and this plugin resolve to the
+        # same nixpkgs, so their ABI matches with no override needed.
+        plugins = [ pkgs.hyprlandPlugins.hyprspace ];
 
         # hyprspace: workspaces overview, toggled on Super + ;
         settings.bind = [ "$mod, semicolon, overview:toggle" ];

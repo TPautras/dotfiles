@@ -13,13 +13,7 @@
     };
 
     config = mkIf cfg.enable {
-      programs.hyprland = {
-        enable = true;
-        # Run the flake's Hyprland so the flake-built plugins (hyprspace,
-        # hypr-dynamic-cursors) match its ABI exactly.
-        package       = inputs.hyprland.packages.${pkgs.system}.hyprland;
-        portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-      };
+      programs.hyprland.enable = true;
 
       xdg.portal = {
         enable       = true;
