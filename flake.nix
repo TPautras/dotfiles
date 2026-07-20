@@ -39,13 +39,6 @@
     };
 
     areofyl-fetch.url = "github:areofyl/fetch";
-
-    hyprland.url = "github:hyprwm/Hyprland";
-
-    hyprexpo-nix = {
-      url = "github:Azelout/hyprexpo-nix";
-      inputs.hyprland.follows = "hyprland";
-    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake
