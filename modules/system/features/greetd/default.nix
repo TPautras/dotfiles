@@ -3,7 +3,7 @@
   with lib; let
     cfg = config.sys.greetd;
     tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
-    hyprland-session = "${config.programs.hyprland.finalPackage}/share/wayland-sessions";
+    hyprland-session = "${config.programs.hyprland.package}/share/wayland-sessions";
   in {
     options.sys.greetd.enable = mkEnableOption "greetd";
 
