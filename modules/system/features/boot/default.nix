@@ -8,7 +8,7 @@
     config = mkIf cfg.enable {
       boot = {
         loader = {
-          timeout = 0;
+          timeout = mkDefault 0;
           systemd-boot = {
             enable             = true;
             editor             = false;

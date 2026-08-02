@@ -7,6 +7,10 @@
       gaming.enable  = true;
     };
 
+    boot.loader.timeout = 5;
+
+    time.hardwareClockInLocalTime = true;
+
     system.stateVersion = "25.05";
   };
 }
