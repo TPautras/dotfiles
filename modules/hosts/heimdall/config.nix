@@ -7,7 +7,7 @@
       gaming.enable  = true;
     };
 
-    boot.loader.timeout = 5;
+    boot.loader.timeout = 0;
 
     time.hardwareClockInLocalTime = true;
 
