@@ -56,6 +56,10 @@
     "$mod CTRL, space, exec, kitty --class walt -e walt"
 
     "$mod SHIFT, R, exec, toggle-retro-shader"
+
+    "$hyper, R, exec, kitty --class hypr-rebuild -e hypr-rebuild"
+    "$hyper, Return, exec, kitty --class nvim -e hypr-edit"
+    "$hyper, N, exec, kitty --class nvim -e hypr-add-pkg"
   ];
 
   bindm = [
