@@ -50,6 +50,8 @@
 
       xdg.configFile."nvim".source =
         config.lib.file.mkOutOfStoreSymlink cfg.configDir;
+
+      xdg.configFile."nvim/init.lua".enable = mkForce false;
     };
   };
 }

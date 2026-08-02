@@ -10,12 +10,8 @@
         plugins = with pkgs.hyprlandPlugins; [
           borders-plus-plus
           hy3
-          hypr-darkwindow
           hypr-dynamic-cursors
           hyprfocus
-          hyprgrass
-          hyprsplit
-          imgborders
         ];
 
         settings.plugin.dynamic-cursors = {
