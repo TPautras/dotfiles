@@ -19,7 +19,8 @@
       environment.systemPackages = with pkgs; [
         vim
         git 
-        curl 
+        curl
+        discord 
         wget 
         unzip 
         p7zip 
