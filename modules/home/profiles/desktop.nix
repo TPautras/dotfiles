@@ -16,6 +16,7 @@
       self.homeManagerModules.obsidian
       self.homeManagerModules.aiTools
       self.homeManagerModules.fetch
+      self.homeManagerModules.vscode
     ];
 
     hm = {
@@ -34,6 +35,7 @@
       cursor.enable   = true;
       obsidian.enable = true;
       aiTools.enable  = true;
+      vscode.enable   = true;
     };
 
     stylix.enableReleaseChecks = false;

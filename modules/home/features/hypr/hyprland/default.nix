@@ -12,6 +12,26 @@
         default = "${config.home.homeDirectory}/.dotfiles";
         description = "Chemin du flake NixOS, utilisé par les binds système $hyper.";
       };
+
+      monitors = mkOption {
+        type    = types.listOf types.str;
+        default = [ ",preferred,auto,1" ];
+        description = ''
+          Règles monitor Hyprland, une par écran.
+          Défaut : tous les écrans détectés, résolution native, placés
+          automatiquement de gauche à droite, sans mise à l'échelle.
+          Format : "nom,résolution@taux,position,échelle".
+        '';
+      };
+
+      workspaceRules = mkOption {
+        type    = types.listOf types.str;
+        default = [ ];
+        description = ''
+          Attribution des workspaces aux écrans.
+          Ex. : "1, monitor:DP-1, default:true".
+        '';
+      };
     };
 
     config = mkIf cfg.enable {
@@ -25,7 +45,8 @@
           "$mod"   = "SUPER";
           "$hyper" = "SUPER ALT CTRL SHIFT";
 
-          monitor = ",preferred,auto,1";
+          monitor   = cfg.monitors;
+          workspace = cfg.workspaceRules;
 
           exec-once = [
             "waybar"
