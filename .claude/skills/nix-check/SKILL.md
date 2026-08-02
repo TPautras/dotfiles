@@ -1,6 +1,6 @@
 ---
 name: nix-check
-description: Valide le flake NixOS de ce repo — nix flake check puis évaluation pure des toplevels de chaque host (jade, cobble). À utiliser après toute modification de la config Nix, ou quand l'utilisateur demande de vérifier/checker le flake.
+description: Valide le flake NixOS de ce repo — nix flake check puis évaluation pure des toplevels de chaque host (jade, cobble, heimdall). À utiliser après toute modification de la config Nix, ou quand l'utilisateur demande de vérifier/checker le flake.
 ---
 
 # nix-check
@@ -15,6 +15,7 @@ Objectif : détecter rapidement les erreurs de la config sans tout builder.
    ```bash
    nix eval .#nixosConfigurations.jade.config.system.build.toplevel --raw
    nix eval .#nixosConfigurations.cobble.config.system.build.toplevel --raw
+   nix eval .#nixosConfigurations.heimdall.config.system.build.toplevel --raw
    ```
    (Découvre la liste des hosts en listant `modules/hosts/` plutôt que de la coder en dur.)
 3. Si une commande échoue, lis le message, identifie le fichier fautif sous `modules/`, corrige,

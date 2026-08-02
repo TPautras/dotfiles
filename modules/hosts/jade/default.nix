@@ -3,10 +3,8 @@
     system = "x86_64-linux";
     specialArgs = { inherit inputs; outputs = self; };
     modules = [
-      inputs.disko.nixosModules.disko
       self.nixosModules.jadeHardware
-      self.nixosModules.jadeDisko
-      self.nixosModules.profileWorkstation
+      self.nixosModules.profileLaptop
       self.nixosModules.jadeConfig
     ];
   };

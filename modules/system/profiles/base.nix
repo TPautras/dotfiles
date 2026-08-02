@@ -6,6 +6,7 @@
       self.nixosModules.networking
       self.nixosModules.locale
       self.nixosModules.programs
+      self.nixosModules.user
       inputs.home-manager.nixosModules.home-manager
     ];
 
@@ -18,19 +19,14 @@
       };
       programs.enable   = true;
       greetd.enable     = true;
+      user.homeModules  = [ self.homeManagerModules.homeBase ];
     };
 
     nix = {
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
-        trusted-users         = [ "root" "thomas" ];
         auto-optimise-store   = true;
         warn-dirty            = false;
-      };
-      gc = {
-        automatic = true;
-        dates     = "weekly";
-        options   = "--delete-older-than 30d";
       };
       registry = lib.mapAttrs (_: flake: { inherit flake; }) (
         lib.filterAttrs (_: lib.isType "flake") inputs

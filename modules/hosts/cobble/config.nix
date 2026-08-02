@@ -2,32 +2,7 @@
   flake.nixosModules.cobbleConfig = { pkgs, lib, config, ... }: {
     networking.hostName = "cobble";
 
-    sys = {
-      locale.timezone  = "Europe/Paris";
-      kernel.variant   = "zen";
-      tailscale.enable = true;
-    };
-
-    users.users.thomas = {
-      isNormalUser          = true;
-      description           = "Thomas";
-      initialHashedPassword = "$y$j9T$wRJiLm5dSt0UNte.SS2Bl.$IwkUuGAAU8V.95DlHw8U7px8yFE8t/b.kdBdzzL7E6A";
-      extraGroups           = [
-        "wheel" "networkmanager" "docker" "video" "audio" "input"
-      ];
-    };
-
-    home-manager.users.thomas.imports = [
-      self.homeManagerModules.homeBase
-      self.homeManagerModules.homeDesktop
-    ];
-
-    environment.systemPackages = with pkgs; [
-      firefox
-      kitty
-    ];
-
-    programs.firefox.enable = true;
+    sys.kernel.variant = "zen";
 
     system.stateVersion = "25.05";
   };

@@ -13,7 +13,7 @@
           enable = true;
           clean.enable = true;
           clean.extraArgs = "--keep-since 4d --keep 3";
-          flake = "/home/thomas/.dotfiles";
+          flake = "/home/${config.sys.user.name}/.dotfiles";
         };
       };
       environment.systemPackages = with pkgs; [

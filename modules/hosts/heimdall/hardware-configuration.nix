@@ -1,8 +1,4 @@
 { self, inputs, ... }: {
-  # TEMPLATE — à régénérer sur la machine après le premier boot du live USB :
-  #   nixos-generate-config --no-filesystems --show-hardware-config
-  # puis remplace availableKernelModules par ce qui est détecté.
-  # Pas de fileSystems ici : disko (heimdallDisko) les fournit.
   flake.nixosModules.heimdallHardware = { config, lib, pkgs, modulesPath, ... }: {
     imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 

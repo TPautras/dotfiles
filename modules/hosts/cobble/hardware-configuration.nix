@@ -1,8 +1,5 @@
 { self, inputs, ... }: {
   flake.nixosModules.cobbleHardware = { config, lib, pkgs, modulesPath, ... }: {
-    # À REMPLACER sur la machine cobble : exécute `sudo nixos-generate-config`
-    # puis colle le contenu de /etc/nixos/hardware-configuration.nix ici
-    # (availableKernelModules, fileSystems by-uuid réels, swapDevices, microcode CPU).
     imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
     boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" ];

@@ -1,11 +1,11 @@
 ---
 name: nix-rebuild
-description: Rebuild NixOS d'un host de ce repo (jade ou cobble) en mode build, test ou switch, avec un nix flake check préalable. À utiliser quand l'utilisateur demande de rebuild, appliquer, ou tester la config d'une machine.
+description: Rebuild NixOS d'un host de ce repo (jade, cobble ou heimdall) en mode build, test ou switch, avec un nix flake check préalable. À utiliser quand l'utilisateur demande de rebuild, appliquer, ou tester la config d'une machine.
 ---
 
 # nix-rebuild
 
-Arguments attendus : le host (ex. `jade`, `cobble`) et le mode (`build` par défaut, sinon `test`
+Arguments attendus : le host (ex. `jade`, `cobble`, `heimdall`) et le mode (`build` par défaut, sinon `test`
 ou `switch`). Si l'utilisateur ne précise pas, demande le host et propose `build` par défaut.
 
 Étapes :

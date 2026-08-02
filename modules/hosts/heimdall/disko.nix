@@ -1,7 +1,4 @@
 { self, inputs, ... }: {
-  # ATTENTION : disko EFFACE entièrement le disque `device` ci-dessous.
-  # Vérifie le bon disque avec `lsblk` AVANT de lancer disko, et assure-toi
-  # que Windows est sur un AUTRE disque physique.
   flake.nixosModules.heimdallDisko = { lib, ... }: {
     disko.devices.disk.main = {
       type   = "disk";

@@ -8,10 +8,7 @@
       dataRoot  = mkOption {
         type    = types.nullOr types.str;
         default = null;
-        description = ''
-          Docker data directory. null = défaut Docker (/var/lib/docker),
-          adapté aux laptops. Mettre un chemin (ex. un HDD dédié) si besoin.
-        '';
+        description = "Répertoire de données Docker. null = défaut (/var/lib/docker).";
       };
     };
 
@@ -26,6 +23,8 @@
         autoPrune.enable    = true;
         autoPrune.dates     = "weekly";
       };
+
+      users.users.${config.sys.user.name}.extraGroups = [ "docker" ];
 
       environment.systemPackages = with pkgs; [
         docker-compose

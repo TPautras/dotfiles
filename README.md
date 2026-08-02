@@ -1,151 +1,96 @@
-# NixOS Config — laptops Jade & Cobble
+# NixOS — jade, cobble, heimdall
 
-Config NixOS modulaire (flake-parts + import-tree) pour les **laptops** :
+Config NixOS modulaire (flake-parts + import-tree) pour mes machines :
 
-- **Jade** — laptop AMD de test, desktop **Hyprland + Waybar** (Everforest via Stylix)
-- **Cobble** — laptop de travail quotidien, même stack que Jade
+| Machine | Rôle | Profil |
+|---------|------|--------|
+| **jade** | laptop AMD de test | `profileLaptop` |
+| **cobble** | laptop de travail quotidien | `profileLaptop` |
+| **heimdall** | tour workstation + gaming | `profileTower` |
 
-> **Le serveur Granite n'est pas sous NixOS.** Il tourne sous Ubuntu Server 24.04 LTS,
-> configuré de façon impérative (Coolify + Docker + Hermes). Tout son setup vit dans
-> [`granite/`](./granite/) — voir [granite/README.md](./granite/README.md).
-1a7a0070c28742f1a1248b8d89e71999
+Bureau Hyprland + Waybar, thème Everforest, shell fish.
+
+> **Granite n'est pas là-dedans.** C'est le serveur physique, sous Ubuntu Server 24.04,
+> configuré de façon impérative (Coolify + Docker). Tout son setup vit dans
+> [`granite/`](./granite/).
+
 ---
 
-## Architecture
+## Structure
 
 ```
 modules/
-├── flake/
-│   ├── home-manager-output.nix   # déclare l'output homeManagerModules
-│   └── systems.nix               # perSystem : formatter + packages
-├── lib/
-│   └── palette.nix               # palette Everforest centralisée (flake.lib.palette)
-├── system/
-│   ├── features/                 # modules atomiques ON/OFF (sys.*)
-│   │   ├── boot networking locale sound printing
-│   │   ├── kernel tailscale docker programs stylix
-│   │   └── hyprland/             # Hyprland système + greetd/tuigreet + portails
-│   └── profiles/
-│       ├── base.nix              → tout host
-│       └── workstation.nix       → Jade & Cobble : + desktop Hyprland
-├── home/
-│   ├── features/                 # modules home-manager atomiques (hm.*)
-│   │   ├── fish starship tmux neovim nix-aliases fonts obsidian ai-tools
-│   │   ├── hyprland/             # config user Hyprland + rofi + mako + hyprlock/hypridle
-│   │   └── waybar/               # barre de statut
-│   └── profiles/
-│       ├── base.nix              → tout host
-│       └── desktop.nix           → Jade & Cobble : + Hyprland + Waybar
-└── hosts/
-    ├── jade/
-    └── cobble/
+├── flake/     outputs du flake (homeManagerModules, perSystem)
+├── lib/       palette Everforest partagée
+├── system/    config NixOS   → features/ (sys.*) + profiles/
+├── home/      config user    → features/ (hm.*) + profiles/
+└── hosts/     une machine = un dossier
 
-wallpapers/                       # wallpapers (hyprpaper)
+nvim/          config Neovim en lua, éditable en place (pas dans le store)
+wallpapers/
+granite/       le serveur, hors NixOS
 ```
 
-### Logique profiles / features
+Chaque dossier de `modules/` a son propre README qui explique ses conventions.
 
-Un **feature** est un module atomique avec une option `enable` :
+L'idée générale : un **feature** est un bloc atomique avec un `enable`, un **profil**
+compose des features, un **host** ne déclare que ce qui lui est propre.
 
 ```nix
-sys.hyprland.enable = true;   # system feature
-hm.waybar.enable    = true;   # home feature
+sys.gaming.enable = true;    # feature système
+hm.waybar.enable  = true;    # feature home
 ```
-
-Un **profil** compose des features. Pour une nouvelle machine, on importe `profileWorkstation`
-et on ajuste ce qui diffère.
 
 ---
 
-## Commandes rapides (fish)
+## Au quotidien
 
-### Rebuild
+```bash
+nrs                  # rebuild switch (abbr fish)
+nrsh heimdall        # rebuild switch d'un host précis
+make check           # nix flake check
+```
 
-| Commande | Action |
-|----------|--------|
-| `nrs` | `nixos-rebuild switch` — applique et persiste |
-| `nrt` | `nixos-rebuild test` — applique, revert au reboot |
-| `nrb` | `nixos-rebuild build` — compile sans appliquer |
-| `nrd` | `nixos-rebuild dry-activate` — montre ce qui changerait |
-| `nrbo` | `nixos-rebuild boot` — applique au prochain boot |
-| `nrvm` | `nixos-rebuild build-vm` — construit une VM QEMU |
+Les raccourcis fish (`nrs`, `nfu`, `ngc`, `nrdeploy`, …) sont définis dans
+[`modules/home/features/nix-aliases/`](./modules/home/features/nix-aliases/).
 
-### Fonctions
+### Binds système dans Hyprland
 
-| Commande | Action |
-|----------|--------|
-| `nrsh jade` / `nrsh cobble` | rebuild switch pour un host précis |
-| `nrdeploy cobble 100.x.y.z` | rebuild et déploie en SSH sur un host distant |
-| `nrvm-run jade` | build + lance la VM de test d'un host |
-| `npkg ripgrep` | cherche un paquet dans nixpkgs |
-| `nwhy firefox` | pourquoi ce paquet est dans le store |
+`$hyper` = `Super + Alt + Ctrl + Shift`.
 
-### Flake
-
-| Commande | Action |
-|----------|--------|
-| `nfu` | `nix flake update` |
-| `nfc` | `nix flake check` |
-| `nfl` | `nix flake lock` |
-| `nfs` | `nix flake show` |
-
-### Divers
-
-| Commande | Action |
-|----------|--------|
-| `ngc` | garbage collect toutes les générations |
-| `ngo` | optimise le store (déduplication) |
-| `nsh python311` | shell éphémère avec un paquet |
-| `nrun cowsay` | exécute un paquet sans l'installer |
+| Bind | Action |
+|------|--------|
+| `$hyper + R` | rebuild du host courant |
+| `$hyper + Return` | ouvre le flake dans nvim |
+| `$hyper + N` | ouvre `hosts/<host>/config.nix` sur `systemPackages` |
 
 ---
 
 ## Tester avant de déployer
 
 ```bash
-nix flake check                                                   # évalue tout le flake
-nix eval .#nixosConfigurations.jade.config.system.build.toplevel  # éval pure, rapide
-nixos-rebuild build --flake .#jade                                # build sans appliquer
-sudo nixos-rebuild test --flake .#jade                            # applique temporairement
-nixos-rebuild build-vm --flake .#jade && ./result/bin/run-jade-vm # VM QEMU isolée
+nix flake check
+nix eval .#nixosConfigurations.jade.config.system.build.toplevel --raw   # éval pure, rapide
+nixos-rebuild build --flake .#jade                                       # build sans appliquer
+sudo nixos-rebuild test --flake .#jade                                   # applique, revert au reboot
 ```
 
-Ces cibles existent aussi dans le `Makefile` (`make check`, `make build-jade`, `make vm-jade`, …).
+Idem via `make check`, `make build-jade`, `make vm-jade`.
 
 ---
-
-## Ajouter une machine
-
-1. Crée `modules/hosts/<nom>/` avec `default.nix`, `config.nix`, `hardware-configuration.nix`, `disko.nix`.
-2. Sur la machine réelle : `sudo nixos-generate-config` puis colle le résultat dans `hardware-configuration.nix`.
-3. `sudo nixos-rebuild switch --flake .#<nom>`
-
-## Ajouter un feature
-
-- **Système** : `modules/system/features/<nom>/default.nix` expose `sys.<nom>.enable`, importé dans un profil.
-- **Home** : `modules/home/features/<nom>/default.nix` expose `hm.<nom>.enable`, importé dans un profil home.
-
----
-
-## Bureau Hyprland
-
-- Compositeur **Hyprland** (paquet nixpkgs, compatible avec les plugins `hyprlandPlugins`).
-- Barre **Waybar**, launcher **rofi**, notifications **mako**, verrouillage **hyprlock**, veille **hypridle**.
-- Thème **Everforest** unifié par **Stylix** (palette dans `modules/lib/palette.nix`).
-- Raccourcis principaux : `SUPER+Return` (kitty), `SUPER+Space` (launcher), `SUPER+1..9` (workspaces),
-  `SUPER+flèches` (focus), `SUPER+Escape` (lock), `Print` (capture région).
 
 ## Changer le mot de passe
 
+Le hash est unique pour toutes les machines, dans
+[`modules/system/features/user/`](./modules/system/features/user/) :
+
 ```bash
-mkpasswd -m sha-512   # copie le hash dans hosts/<host>/config.nix (initialHashedPassword)
-sudo nixos-rebuild switch --flake .#<host>
+mkpasswd -m sha-512    # colle le résultat dans sys.user.hashedPassword
 ```
 
 ---
 
-## Doc Claude Code
+## Claude Code
 
-Un guide pour exploiter l'agent Claude Code sur ce repo (boucles, subagents, workflows, skills,
-mémoire) : [docs/claude-code.md](./docs/claude-code.md). Des skills NixOS custom vivent dans
-[`.claude/skills/`](./.claude/skills/).
+Guide d'utilisation de l'agent sur ce repo : [docs/claude-code.md](./docs/claude-code.md).
+Skills NixOS custom dans [`.claude/skills/`](./.claude/skills/).

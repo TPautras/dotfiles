@@ -35,10 +35,6 @@
           gs     = "git status";
           gd     = "git diff";
           gl     = "git log --oneline --graph";
-          nrs    = "sudo nixos-rebuild switch --flake .";
-          nrt    = "sudo nixos-rebuild test --flake .";
-          nfu    = "nix flake update";
-          nfc    = "nix flake check";
         };
       };
 

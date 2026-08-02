@@ -3,14 +3,7 @@
   with lib; let
     cfg = config.sys.hyprland;
   in {
-    options.sys.hyprland = {
-      enable = mkEnableOption "Hyprland Wayland compositor (system-level)";
-      user   = mkOption {
-        type        = types.str;
-        default     = "thomas";
-        description = "User pre-selected by the greeter.";
-      };
-    };
+    options.sys.hyprland.enable = mkEnableOption "Hyprland Wayland compositor (system-level)";
 
     config = mkIf cfg.enable {
       programs.hyprland.enable = true;
@@ -34,8 +27,6 @@
       security.pam.services.hyprlock = {};
       security.polkit.enable    = true;
       services.dbus.enable      = true;
-      services.upower.enable    = true;
-      services.power-profiles-daemon.enable = true;
 
       hardware.bluetooth = {
         enable      = true;

@@ -3,7 +3,15 @@
   with lib; let
     cfg = config.hm.neovim;
   in {
-    options.hm.neovim.enable = mkEnableOption "Neovim + LazyVim (Python, Lua, C++)";
+    options.hm.neovim = {
+      enable = mkEnableOption "Neovim + LazyVim (Python, Lua, C++, Nix)";
+
+      configDir = mkOption {
+        type    = types.str;
+        default = "${config.home.homeDirectory}/.dotfiles/nvim";
+        description = "Dossier lua éditable en place, lié hors du store.";
+      };
+    };
 
     config = mkIf cfg.enable {
       programs.neovim = {
@@ -40,75 +48,8 @@
         ];
       };
 
-      xdg.configFile."nvim/init.lua".text = ''
-        local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-        if not (vim.uv or vim.loop).fs_stat(lazypath) then
-          vim.fn.system({
-            "git", "clone", "--filter=blob:none", "--branch=stable",
-            "https://github.com/folke/lazy.nvim.git", lazypath,
-          })
-        end
-        vim.opt.rtp:prepend(lazypath)
-
-        require("lazy").setup({
-          spec = {
-            { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-            { import = "lazyvim.plugins.extras.lang.python" },
-            { import = "lazyvim.plugins.extras.lang.lua" },
-            { import = "lazyvim.plugins.extras.lang.clangd" },
-            { import = "lazyvim.plugins.extras.lang.nix" },
-            { import = "plugins" },
-          },
-          defaults  = { lazy = false, version = false },
-          install   = { colorscheme = { "everforest", "habamax" } },
-          checker   = { enabled = true, notify = false },
-          performance = {
-            rtp = {
-              disabled_plugins = {
-                "gzip", "tarPlugin", "tohtml", "tutor", "zipPlugin",
-              },
-            },
-          },
-        })
-      '';
-
-      xdg.configFile."nvim/lua/plugins/colorscheme.lua".text = ''
-        return {
-          {
-            "sainnhe/everforest",
-            lazy     = false,
-            priority = 1000,
-            config   = function()
-              vim.g.everforest_background         = "hard"
-              vim.g.everforest_better_performance = 1
-              vim.g.everforest_enable_italic      = 1
-              vim.cmd.colorscheme("everforest")
-            end,
-          },
-          {
-            "LazyVim/LazyVim",
-            opts = { colorscheme = "everforest" },
-          },
-        }
-      '';
-
-      xdg.configFile."nvim/lua/plugins/options.lua".text = ''
-        return {
-          {
-            "nvim-lspconfig",
-            opts = {
-              servers = {
-                pyright = {},
-                lua_ls  = {},
-                clangd  = {},
-                nil_ls  = {},
-              },
-            },
-          },
-        }
-      '';
-
-      xdg.configFile."nvim/lua/plugins/.keep".text = "";
+      xdg.configFile."nvim".source =
+        config.lib.file.mkOutOfStoreSymlink cfg.configDir;
     };
   };
 }

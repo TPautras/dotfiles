@@ -3,7 +3,7 @@
   with lib; let
     cfg = config.sys.gaming;
   in {
-    options.sys.gaming.enable = mkEnableOption "Gaming (Steam, Proton-GE, gamemode, gamescope) — AMD GPU";
+    options.sys.gaming.enable = mkEnableOption "Gaming (Steam, Proton-GE, gamemode, gamescope) — GPU AMD";
 
     config = mkIf cfg.enable {
       hardware.graphics = {
@@ -27,6 +27,8 @@
       programs.gamemode.enable = true;
 
       hardware.steam-hardware.enable = true;
+
+      users.users.${config.sys.user.name}.extraGroups = [ "gamemode" ];
 
       environment.systemPackages = with pkgs; [
         mangohud

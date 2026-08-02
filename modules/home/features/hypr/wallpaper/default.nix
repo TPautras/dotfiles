@@ -3,12 +3,10 @@
   with lib; let
     cfg  = config.hm.wallpaper;
     walt = inputs.walt.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    wallpaper = ../../../../../wallpapers/waterfall_1.png;
-    link = "${config.home.homeDirectory}/.cache/wallpaper/current";
 
     setWallpaper = pkgs.writeShellScript "set-wallpaper" ''
       for _ in $(seq 1 40); do
-        if ${pkgs.hyprland}/bin/hyprctl hyprpaper wallpaper ",${wallpaper}" >/dev/null 2>&1; then
+        if ${pkgs.hyprland}/bin/hyprctl hyprpaper wallpaper ",${cfg.default}" >/dev/null 2>&1; then
           exit 0
         fi
         sleep 0.25
@@ -17,7 +15,21 @@
       exit 1
     '';
   in {
-    options.hm.wallpaper.enable = mkEnableOption "Wallpaper picker (walt) + hyprpaper backend";
+    options.hm.wallpaper = {
+      enable = mkEnableOption "Wallpaper picker (walt) + backend hyprpaper";
+
+      default = mkOption {
+        type    = types.str;
+        default = "${self}/wallpapers/waterfall_1.png";
+        description = "Wallpaper appliqué au démarrage et fallback de l'écran de verrouillage.";
+      };
+
+      link = mkOption {
+        type    = types.str;
+        default = "${config.home.homeDirectory}/.cache/wallpaper/current";
+        description = "Lien stable vers le wallpaper actif, lu par hyprlock.";
+      };
+    };
 
     config = mkIf cfg.enable {
       services.hyprpaper = {
@@ -25,18 +37,18 @@
         settings = {
           ipc       = "on";
           splash    = false;
-          preload   = [ "${wallpaper}" ];
-          wallpaper = [ ",${wallpaper}" ];
+          preload   = [ cfg.default ];
+          wallpaper = [ ",${cfg.default}" ];
         };
       };
 
       systemd.user.services.hyprpaper-wallpaper = {
         Unit = {
-          Description = "Applique le wallpaper via IPC (hyprpaper 0.8.4 ignore preload/wallpaper de sa config)";
+          Description = "Applique le wallpaper via IPC";
           After   = [ "hyprpaper.service" ];
           BindsTo = [ "hyprpaper.service" ];
           ConditionEnvironment = "WAYLAND_DISPLAY";
-          X-Restart-Triggers = [ "${wallpaper}" ];
+          X-Restart-Triggers = [ cfg.default ];
         };
         Service = {
           Type            = "oneshot";
@@ -51,11 +63,11 @@
       home.activation.setupWallpapers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         WDIR="$HOME/Pictures/wallpapers"
         mkdir -p "$WDIR"
-        ${pkgs.findutils}/bin/find ${../../../../../wallpapers} -maxdepth 1 -type f \
+        ${pkgs.findutils}/bin/find ${self}/wallpapers -maxdepth 1 -type f \
           \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) \
           -exec ${pkgs.coreutils}/bin/cp -n {} "$WDIR/" \;
-        mkdir -p "$(dirname "${link}")"
-        [ -L "${link}" ] || ln -sfn ${wallpaper} "${link}"
+        mkdir -p "$(dirname "${cfg.link}")"
+        [ -L "${cfg.link}" ] || ln -sfn ${cfg.default} "${cfg.link}"
       '';
     };
   };

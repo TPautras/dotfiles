@@ -5,8 +5,8 @@
     ef  = self.lib.palette;
     hex = c: removePrefix "#" c;
 
-    wallpaper = ../../../../../wallpapers/waterfall_1.png;
-    link      = "${config.home.homeDirectory}/.cache/wallpaper/current";
+    wallpaper = config.hm.wallpaper.default;
+    link      = config.hm.wallpaper.link;
 
     date  = "${pkgs.coreutils}/bin/date";
     curl  = "${pkgs.curl}/bin/curl";

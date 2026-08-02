@@ -6,7 +6,7 @@
       inputs.disko.nixosModules.disko
       self.nixosModules.heimdallHardware
       self.nixosModules.heimdallDisko
-      self.nixosModules.profileWorkstation
+      self.nixosModules.profileTower
       self.nixosModules.gaming
       self.nixosModules.heimdallConfig
     ];
