@@ -12,7 +12,6 @@
       self.nixosModules.profileTower
       self.nixosModules.gaming
       self.nixosModules.heimdallConfig
-      self.homeManagerModules.heimdall
     ];
   };
 }

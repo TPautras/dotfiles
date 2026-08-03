@@ -19,6 +19,8 @@
       time.hardwareClockInLocalTime = true;
 
       system.stateVersion = "25.05";
+
+      user.homeModules = [ self.homeManagerModules.heimdall ];
     };
   flake.homeManagerModules.heimdall = { ... }: {
     hm.hyprland.monitors = [
