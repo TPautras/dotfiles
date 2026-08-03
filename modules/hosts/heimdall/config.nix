@@ -20,7 +20,7 @@
 
       system.stateVersion = "25.05";
 
-      user.homeModules = [ self.homeManagerModules.heimdall ];
+      home-manager.users.thomas.imports = [ self.homeManagerModules.heimdall ];
     };
   flake.homeManagerModules.heimdall = { ... }: {
     hm.hyprland.monitors = [
