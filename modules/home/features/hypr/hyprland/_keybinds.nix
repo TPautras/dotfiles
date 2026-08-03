@@ -8,7 +8,7 @@
     "$mod, F, fullscreen"
     ", F11, fullscreen"
     "$mod, Escape, exec, wlogout -p layer-shell"
-    "$mod, L, exec, lockscreen"
+    "$hyper, L, exec, lockscreen"
     "$mod SHIFT, M, exit"
 
     "$mod, V, exec, rofi-clipboard"
@@ -25,10 +25,10 @@
     "$mod, K, movefocus, u"
     "$mod, J, movefocus, d"
 
-    "$mod SHIFT, left, movewindow, l"
-    "$mod SHIFT, right, movewindow, r"
-    "$mod SHIFT, up, movewindow, u"
-    "$mod SHIFT, down, movewindow, d"
+    "$mod SHIFT, H, movewindow, l"
+    "$mod SHIFT, L, movewindow, r"
+    "$mod SHIFT, K, movewindow, u"
+    "$mod SHIFT, J, movewindow, d"
 
     "$mod, 1, workspace, 1"
     "$mod, 2, workspace, 2"
