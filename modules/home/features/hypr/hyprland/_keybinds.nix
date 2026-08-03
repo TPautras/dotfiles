@@ -20,10 +20,10 @@
     "$mod, period, exec, rofi -show emoji"
     "$mod, O, exec, rofi-obsidian"
 
-    "$mod, left, movefocus, l"
-    "$mod, right, movefocus, r"
-    "$mod, up, movefocus, u"
-    "$mod, down, movefocus, d"
+    "$mod, H, movefocus, l"
+    "$mod, L, movefocus, r"
+    "$mod, K, movefocus, u"
+    "$mod, J, movefocus, d"
 
     "$mod SHIFT, left, movewindow, l"
     "$mod SHIFT, right, movewindow, r"
