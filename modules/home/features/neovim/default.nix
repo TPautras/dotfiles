@@ -8,12 +8,14 @@
 
       configDir = mkOption {
         type    = types.str;
-        default = "${config.home.homeDirectory}/.dotfiles/nvim";
-        description = "Dossier lua éditable en place, lié hors du store.";
+        default = "${config.home.homeDirectory}/nvim-config";
+        description = "Repo LazyVim autonome, lié hors du store et éditable en place.";
       };
     };
 
     config = mkIf cfg.enable {
+      home.sessionVariables.NVIM_NIX = "1";
+
       programs.neovim = {
         enable        = true;
         defaultEditor = true;
