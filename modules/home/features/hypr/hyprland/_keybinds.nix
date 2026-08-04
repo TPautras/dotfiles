@@ -1,6 +1,6 @@
 {
   bind = [
-    "$mod, Return, exec, kitty"
+    "$mod, Return, exec, kitty -e tmux"
     "$mod, Space, exec, rofi -show drun"
     "$mod, N, exec, kitty -e nvim"
     "$mod, W, killactive"
