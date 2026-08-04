@@ -60,6 +60,11 @@
     "$hyper, R, exec, kitty --class hypr-rebuild -e hypr-rebuild"
     "$hyper, Return, exec, kitty --class nvim -e hypr-edit"
     "$hyper, N, exec, kitty --class nvim -e hypr-add-pkg"
+
+    "$hyper, equal, exec, brightness up"
+    "$hyper, backslash, exec, brightness down"
+    ", XF86MonBrightnessUp, exec, brightness up"
+    ", XF86MonBrightnessDown, exec, brightness down"
   ];
 
   bindm = [
@@ -84,7 +89,5 @@
   bindel = [
     ", XF86AudioRaiseVolume, exec, pamixer -i 5"
     ", XF86AudioLowerVolume, exec, pamixer -d 5"
-    ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
-    ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
   ];
 }

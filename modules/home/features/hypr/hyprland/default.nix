@@ -90,6 +90,32 @@
           read -n1 -rp "[rebuild terminé — une touche pour fermer]"
         '')
 
+        (writeShellScriptBin "brightness" ''
+          case "''${1:-}" in
+            up)   bctl="+5%"; ddc="+" ;;
+            down) bctl="5%-"; ddc="-" ;;
+            *) echo "usage: brightness up|down" >&2; exit 1 ;;
+          esac
+
+          # Laptop : vrai backlight interne.
+          if [ -n "$(ls -A /sys/class/backlight 2>/dev/null)" ]; then
+            exec brightnessctl set "$bctl"
+          fi
+
+          # Tour : écrans externes en DDC/CI. detect est lent (~2 s) et rate
+          # l'identification des MSI en HDMI, mais setvcp direct sur leur bus
+          # marche avec --sleep-multiplier. On mémorise donc la liste des bus.
+          cache="''${XDG_RUNTIME_DIR:-/tmp}/brightness-buses"
+          if [ ! -s "$cache" ]; then
+            ddcutil --sleep-multiplier 2 detect 2>/dev/null \
+              | grep -oP '/dev/i2c-\K[0-9]+' > "$cache"
+          fi
+          while read -r bus; do
+            ddcutil --bus "$bus" --sleep-multiplier 2 --noverify setvcp 10 "$ddc" 10 &
+          done < "$cache"
+          wait
+        '')
+
         (writeShellScriptBin "hypr-edit" ''
           exec nvim "${cfg.flakeDir}"
         '')
